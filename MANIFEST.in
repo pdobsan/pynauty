@@ -1,0 +1,8 @@
+include COPYING README
+include src/pynauty.h
+recursive-include docs *
+recursive-exclude docs *.swp
+recursive-exclude docs *.pyc
+recursive-exclude docs *.pyo
+prune docs/tmp
+prune docs/_build/doctrees

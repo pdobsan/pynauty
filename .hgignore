@@ -1,0 +1,39 @@
+# use glob syntax.
+syntax: glob
+
+# hg revert backup files
+*.orig
+
+# vi swap files
+*.swp
+# tar, backup, tmp/ files
+*.bak
+*.tar.gz
+*.tar.bz2
+tmp/
+
+# C compiled
+*.o
+*.so
+a.out
+
+# py compiled files
+*.pyc
+*.pyo
+
+# python distutils/setuptools stuff
+build/
+*.egg-info/
+temp/
+dist/
+installed-files.log
+# sphinx, docutils
+_build/
+MANIFEST
+GNU-General-Public-License.txt
+
+# nauty
+nauty*/
+
+# switch to regexp syntax.
+#syntax: regexp
