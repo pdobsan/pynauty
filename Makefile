@@ -7,6 +7,7 @@ help:
 	@echo '  test          - run tests'
 	@echo '  install       - install pynauty'
 	@echo '  distro        - create a source distribution'
+	@echo '  webins        - install the distro and docs on the web'
 	@echo '  docu          - build pyanauty documentation'
 	@echo '  clean         - remove all python related temp files and dirs'
 	@echo '  nauty-progs   - build all nauty programs'
@@ -28,6 +29,14 @@ distro:
 
 docu: pynauty
 	cd docs; make html
+
+WEBDIR = ~/public_html/software/pynauty
+TARFILE = $(wildcard dist/pynauty-*)
+
+webins: distro docu
+	install -m 644 ${TARFILE} ${WEBDIR}
+	rsync -av docs/_build/html/ ${WEBDIR}
+	chmod -R a+rX ${WEBDIR}
 
 clean:
 	rm -fr build
