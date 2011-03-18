@@ -18,7 +18,7 @@ Functions:
                   of the graph's vertices.
 '''
 
-__version__ = '0.3'
+__version__ = '0.4'
 
 __LICENSE__     = '''
 Copyright (c) 2004-2011 Peter Dobcsanyi

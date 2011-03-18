@@ -87,5 +87,5 @@ variable.  ``XXXXXX`` depends on you platform and the version of Python
 you are using. Note, you must use absolute path in ``PYTHONPATH``.
 
 
-.. _tar-file: http://petrusit.com/software/pynauty-0.3.tar.gz
+.. _tar-file: pynauty-0.4.tar.gz
 .. _Nauty: http://cs.anu.edu.au/~bdm/nauty/
