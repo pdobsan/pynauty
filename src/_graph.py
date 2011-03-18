@@ -189,6 +189,6 @@ def isomorphic(a, b):
     elif map(len, a.vertex_coloring) != map(len, a.vertex_coloring):
         return False
     else:
-        return graph_certificate(a) == graph_certificate(b)
+        return certificate(a) == certificate(b)
 
 # vim: expandtab:
