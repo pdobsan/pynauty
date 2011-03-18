@@ -6,3 +6,4 @@ recursive-exclude docs *.pyc
 recursive-exclude docs *.pyo
 prune docs/tmp
 prune docs/_build/doctrees
+recursive-include tests *
