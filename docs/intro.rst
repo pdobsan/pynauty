@@ -5,7 +5,7 @@ Introduction
 graphs for isomorphism and to determine their automorphism group.  It is
 based on the Nauty_ C procedures.
 
-The current version is 0.3.
+The current version is 0.4
 
 **pynauty**  is compatible only with Python-2. A Python-3
 version is planned for the future.
