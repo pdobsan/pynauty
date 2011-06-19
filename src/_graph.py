@@ -92,12 +92,18 @@ class Graph(object):
             A vertex of the Graph. The *tail* of the arcs if the Graph
             is directed.
         *neighbors*
-            The list of vertices to which *v* should be connected.
+            A vertex or a list of vertices to which *v* should be connected.
             The *heads* of the arcs if the Graph is directed.
+
         '''
         self._check_vertices([v])
-        self._check_vertices(neighbors)
-        self._adjacency_dict[v] = neighbors
+        if isinstance(neighbors, list):
+            self._check_vertices(neighbors)
+            self._adjacency_dict[v] = neighbors
+        else:
+            self._check_vertices([neighbors])
+            self._adjacency_dict.setdefault(v, [])
+            self._adjacency_dict[v].append(neighbors)
 
     def _get_vertex_coloring(self):
         return self._vertex_coloring
@@ -186,7 +192,7 @@ def isomorphic(a, b):
     '''
     if a.number_of_vertices != b.number_of_vertices:
         return False
-    elif map(len, a.vertex_coloring) != map(len, a.vertex_coloring):
+    elif map(len, a.vertex_coloring) != map(len, b.vertex_coloring):
         return False
     else:
         return certificate(a) == certificate(b)
