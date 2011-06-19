@@ -1,5 +1,9 @@
-VIRTENV	= ~/python/virtualenvs/pynauty
 LIBPATH = $(wildcard build/lib.*)
+
+WEBDIR = ~/public_html/software/pynauty
+TARFILE = $(wildcard dist/pynauty-*)
+
+NAUTY_BUILT = nauty/.nauty-objects-built
 
 help:
 	@echo Available targets:
@@ -15,23 +19,26 @@ help:
 	@echo '  clean-nauty   - a "distclean" for nauty'
 	@echo '  clobber       - clean clean-nauty'
 
-pynauty:
+pynauty: $(NAUTY_BUILT)
 	python setup.py build
 
 test: pynauty
 	cd tests; PYTHONPATH=../${LIBPATH} python test_pynauty.py
 
-install:
-	. $(VIRTENV)/bin/activate; python setup.py install
+install: pynauty
+ifdef VIRTUAL_ENV
+	python setup.py install
+else
+	@echo ERROR: no VIRTUAL_ENV environment varaible found.
+	@echo cannot install, aborting ...
+	@exit 1
+endif
 
-distro:
+distro: docu
 	python setup.py sdist
 
-docu: pynauty
+docu:
 	cd docs; make html
-
-WEBDIR = ~/public_html/software/pynauty
-TARFILE = $(wildcard dist/pynauty-*)
 
 webins: distro docu
 	install -m 644 ${TARFILE} ${WEBDIR}
@@ -52,13 +59,20 @@ GTOOLS = copyg listg labelg dretog amtog geng complg shortg showg NRswitchg \
   biplabg addedgeg deledgeg countg pickg genrang newedgeg catg genbg directg \
   multig planarg gentourng
 
-nauty-programs:
-	cd nauty; ./configure; make
+nauty-config:
+	cd nauty; [ -f makefile ] || ./configure
 
-nauty-objects:
-	cd nauty; ./configure; make nauty.o nautil.o naugraph.o
+nauty-programs: nauty-config
+	cd nauty; make
+	touch $(NAUTY_BUILT)
+
+$(NAUTY_BUILT): nauty-objects
+nauty-objects: nauty-config
+	cd nauty; make nauty.o nautil.o naugraph.o
+	touch $(NAUTY_BUILT)
 
 clean-nauty:
 	cd nauty; make clean; \
 	rm -f makefile dreadnaut ${GTOOLS}
+	rm -f $(NAUTY_BUILT)
 
