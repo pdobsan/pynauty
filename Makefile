@@ -23,7 +23,7 @@ pynauty: $(NAUTY_BUILT)
 	python setup.py build
 
 test: pynauty
-	cd tests; PYTHONPATH=../${LIBPATH} python test_pynauty.py
+	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" python test_pynauty.py
 
 install: pynauty
 ifdef VIRTUAL_ENV
@@ -37,19 +37,21 @@ endif
 distro: docu
 	python setup.py sdist
 
-docu:
-	cd docs; make html
+docu: docu-clean pynauty
+	cd docs; PYTHONPATH="../$(LIBPATH):$(PYTHONPATH)" make html
+
+docu-clean:
+	cd docs; make clean
 
 webins: distro docu
 	install -m 644 ${TARFILE} ${WEBDIR}
 	rsync -av docs/_build/html/ ${WEBDIR}
 	chmod -R a+rX ${WEBDIR}
 
-clean:
+clean: docu-clean
 	rm -fr build
 	rm -fr dist
 	rm -f MANIFEST
-	cd docs; make clean
 
 clobber: clean clean-nauty
 
