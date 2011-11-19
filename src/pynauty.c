@@ -244,7 +244,9 @@ static int set_partition(PyObject *py_graph, int *lab, int *ptn)
             lab[n] = x;
             ptn[n++] = 1;
         }
-        ptn[n-1] = 0;
+        if (n > 0) {
+            ptn[n-1] = 0;
+        }
 
         Py_DECREF(iterator);
     }
