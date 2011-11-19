@@ -1,0 +1,7 @@
+Important chnages in version 0.6
+
+  - Lifted the python2.X interpreter into make variable PYTHON.
+    Please, set it to your system's version of python before building.
+
+  - Fixed a pointer underflow bug - thanks to Gregory Puleo <gpuleo@gmail.com>
+
