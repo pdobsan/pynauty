@@ -1,4 +1,4 @@
-include COPYING README
+include COPYING README Release.notes
 include src/pynauty.h
 recursive-include docs *
 recursive-exclude docs *.swp
