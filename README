@@ -1,5 +1,5 @@
 pynauty -- Copyright (c) 2004-2011 Peter Dobcsanyi
-version: 0.5
+version: 0.6
 
 This is the source distribution of pynauty, a Python/C extension module.
 It can be used to compare graphs for isomorphism and to determine their
