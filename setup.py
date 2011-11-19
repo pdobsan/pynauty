@@ -1,11 +1,10 @@
-#!/usr/bin/env python
 
 import os
 from distutils.core import setup, Extension
 from distutils import dir_util
 
 MODULE          = 'pynauty'
-VERSION         = '0.5'
+VERSION         = '0.6'
 
 description     = 'Automorphism and isomorphism of graphs'
 long_description = '''
