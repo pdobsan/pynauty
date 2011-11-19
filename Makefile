@@ -1,9 +1,14 @@
+
+# you might need to change this to your python 2.X version
+PYTHON = python2.7
+
 LIBPATH = $(wildcard build/lib.*)
 
 WEBDIR = ~/public_html/software/pynauty
 TARFILE = $(wildcard dist/pynauty-*)
 
 NAUTY_BUILT = nauty/.nauty-objects-built
+
 
 help:
 	@echo Available targets:
@@ -20,14 +25,14 @@ help:
 	@echo '  clobber       - clean clean-nauty'
 
 pynauty: $(NAUTY_BUILT)
-	python setup.py build
+	$(PYTHON) setup.py build
 
 test: pynauty
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" python test_pynauty.py
+	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_pynauty.py
 
 install: pynauty
 ifdef VIRTUAL_ENV
-	python setup.py install
+	$(PYTHON) setup.py install
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot install, aborting ...
@@ -35,7 +40,7 @@ else
 endif
 
 distro: docu
-	python setup.py sdist
+	$(PYTHON) setup.py sdist
 
 docu: docu-clean pynauty
 	cd docs; PYTHONPATH="../$(LIBPATH):$(PYTHONPATH)" make html
