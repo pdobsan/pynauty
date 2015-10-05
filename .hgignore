@@ -21,6 +21,9 @@ a.out
 *.pyc
 *.pyo
 
+# python virtualenv
+.venv/
+
 # python distutils/setuptools stuff
 build/
 *.egg-info/
