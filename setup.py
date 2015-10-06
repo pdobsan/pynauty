@@ -1,14 +1,13 @@
 
 import os
 from distutils.core import setup, Extension
-from distutils import dir_util
 
 MODULE          = 'pynauty'
-VERSION         = '0.6'
+VERSION         = '0.6.0'
 
 description     = 'Automorphism and isomorphism of graphs'
 long_description = '''
-Package for testing isomorphism of graphs 
+Package for testing isomorphism of graphs
 and computing their automorphism group.
 '''
 author          = 'Peter Dobcsanyi'
@@ -25,17 +24,18 @@ data_files      = []
 
 nauty_dir       = 'nauty'  # nauty's source directory
 if not os.access(nauty_dir, os.R_OK | os.X_OK):
-    print "Can't find nauty_dir: %s" % nauty_dir
+    print("Can't find nauty_dir: %s" % nauty_dir)
     raise SystemExit(1)
 
 ext_pynauty = Extension(
         name = MODULE + '._pynauty',
         sources = [ pynauty_dir + '/' + 'pynauty.c', ],
-        depends = [ pynauty_dir + '/' + 'pynauty.h', ],
-        extra_compile_args = [ '-O4' ],
+        extra_compile_args = [ '-O4', '-fPIC' ],
         extra_objects = [ nauty_dir + '/' + 'nauty.o',
                           nauty_dir + '/' + 'nautil.o',
-                          nauty_dir + '/' + 'naugraph.o'
+                          nauty_dir + '/' + 'naugraph.o',
+                          nauty_dir + '/' + 'schreier.o',
+                          nauty_dir + '/' + 'naurng.o',
                         ],
         include_dirs = [ nauty_dir, pynauty_dir ]
     )
