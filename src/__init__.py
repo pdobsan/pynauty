@@ -8,7 +8,7 @@ and producing canonical labeling for isomorphism testing.
 Classes:
 
     Graph   - An adjacency dictionary based graph object.
-        Graph can represent vertex colored, directed or undirected graphs. 
+        Graph can represent vertex colored, directed or undirected graphs.
 
 Functions:
 

@@ -29,7 +29,7 @@ import _pynauty
 class Graph(object):
     '''
     Graph is an adjacency dictionary based graph object.
-    It can represent vertex colored, directed or undirected graphs. 
+    It can represent vertex colored, directed or undirected graphs.
     '''
 
     def __init__(self, number_of_vertices, directed=False,
@@ -83,7 +83,7 @@ class Graph(object):
             self._check_vertices([v])
             self._check_vertices(vs)
         self._adjacency_dict = adjacency_dict.copy()
-        
+
     def connect_vertex(self, v, neighbors):
         '''
         Connect a vertex to some other vertices.
