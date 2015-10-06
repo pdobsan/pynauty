@@ -1,30 +1,24 @@
-
-# you might need to change this to your python 2.X version
-PYTHON = python2.7
-
+PYTHON = python2
+NAUTY_DIR = nauty
 LIBPATH = $(wildcard build/lib.*)
-
-WEBDIR = ~/public_html/software/pynauty
-TARFILE = $(wildcard dist/pynauty-*)
-
-NAUTY_BUILT = nauty/.nauty-objects-built
 
 
 help:
 	@echo Available targets:
-	@echo '  pynauty       - build pynauty extension module'
+	@echo '  pynauty       - build the pynauty extension module'
 	@echo '  test          - run tests'
-	@echo '  install       - install pynauty'
-	@echo '  distro        - create a source distribution'
-	@echo '  webins        - install the distro and docs on the web'
-	@echo '  docu          - build pyanauty documentation'
 	@echo '  clean         - remove all python related temp files and dirs'
+	@echo '  install       - install pynauty into a virtualenv'
+	@echo '  uninstall     - uninstall pynauty from a virtualenv'
+	@echo '  dist          - create a source distribution'
+	@echo '  docs          - build pyanauty documentation'
+	@echo '  clean-docs    - remove pyanauty documentation'
+	@echo '  nauty-objects - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
 	@echo '  nauty-progs   - build all nauty programs'
-	@echo '  nauty-objects - compile only nauty.o nautil.o naugraph.o'
 	@echo '  clean-nauty   - a "distclean" for nauty'
-	@echo '  clobber       - clean clean-nauty'
+	@echo '  clobber       - clean and clean-nauty'
 
-pynauty: $(NAUTY_BUILT)
+pynauty: nauty-objects
 	$(PYTHON) setup.py build
 
 test: pynauty
@@ -32,54 +26,59 @@ test: pynauty
 
 install: pynauty
 ifdef VIRTUAL_ENV
-	$(PYTHON) setup.py install
+	#$(PYTHON) setup.py install
+	pip install .
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot install, aborting ...
 	@exit 1
 endif
 
-distro: docu
+uninstall:
+ifdef VIRTUAL_ENV
+	pip uninstall pynauty
+else
+	@echo ERROR: no VIRTUAL_ENV environment varaible found.
+	@echo cannot uninstall, aborting ...
+	@exit 1
+endif
+
+.PHONY: dist
+dist: docs
 	$(PYTHON) setup.py sdist
 
-docu: docu-clean pynauty
-	cd docs; PYTHONPATH="../$(LIBPATH):$(PYTHONPATH)" make html
+.PHONY: docs
+docs:
+	cd docs; make html
 
-docu-clean:
+clean-docs:
 	cd docs; make clean
 
-webins: distro docu
-	install -m 644 ${TARFILE} ${WEBDIR}
-	rsync -av docs/_build/html/ ${WEBDIR}
-	chmod -R a+rX ${WEBDIR}
-
-clean: docu-clean
+clean:
 	rm -fr build
 	rm -fr dist
 	rm -f MANIFEST
-
-clobber: clean clean-nauty
 
 # nauty stuff
 
 GTOOLS = copyg listg labelg dretog amtog geng complg shortg showg NRswitchg \
   biplabg addedgeg deledgeg countg pickg genrang newedgeg catg genbg directg \
-  multig planarg gentourng
+  multig planarg gentourng ranlabg runalltests subdivideg watercluster2 \
+  linegraphg naucompare
 
-nauty-config:
-	cd nauty; [ -f makefile ] || ./configure
+nauty-config: $(NAUTY_DIR)/makefile
+$(NAUTY_DIR)/makefile:
+	cd $(NAUTY_DIR); ./configure CFLAGS='-O4 -fPIC'
+
+nauty-objects: nauty-config
+	cd $(NAUTY_DIR); make nauty.o nautil.o naugraph.o schreier.o naurng.o
 
 nauty-programs: nauty-config
-	cd nauty; make
-	touch $(NAUTY_BUILT)
-
-$(NAUTY_BUILT): nauty-objects
-nauty-objects: nauty-config
-	cd nauty; make nauty.o nautil.o naugraph.o
-	touch $(NAUTY_BUILT)
+	cd $(NAUTY_DIR); make
 
 clean-nauty:
-	cd nauty; make clean; \
-	rm -f makefile dreadnaut ${GTOOLS}
-	rm -f $(NAUTY_BUILT)
+	cd $(NAUTY_DIR); rm -f *.o dreadnaut ${GTOOLS} nauty.a nauty1.a
+	cd $(NAUTY_DIR); rm -f makefile config.log config.status gtools.h naututil.h nauty.h
+
+clobber: clean clean-nauty clean-docs
 
