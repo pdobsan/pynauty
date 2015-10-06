@@ -322,7 +322,7 @@ NyGraph * _make_nygraph(PyObject *py_graph)
     PyObject *adjlist;
     PyObject *p;
 
-    int i,j;
+    int i;
     int adjlist_length;
     int x, y;
 
@@ -361,13 +361,13 @@ NyGraph * _make_nygraph(PyObject *py_graph)
 
     // iterate over the adjacency list setting
     // the adjacency matrix in the Nauty NyGraph g
-    i = 0;
-    while (PyDict_Next(adjdict, &i, &key, &adjlist)) {
+    Py_ssize_t pos = 0;
+    while (PyDict_Next(adjdict, &pos, &key, &adjlist)) {
         x = PyInt_AS_LONG(key);
         adjlist_length =  PyObject_Length(adjlist);
         rowp = GRAPHROW(g->matrix, x, g->no_setwords);
-        for (j=0; j < adjlist_length; j++) {
-            p = PyList_GET_ITEM(adjlist, j);
+        for (i=0; i < adjlist_length; i++) {
+            p = PyList_GET_ITEM(adjlist, i);
             y = PyInt_AS_LONG(p);
             ADDELEMENT(rowp, y);
             if (g->options->digraph == FALSE) {
