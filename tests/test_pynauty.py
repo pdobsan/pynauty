@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 import sys
 from pynauty import *
@@ -1226,23 +1227,23 @@ Graph(number_of_vertices=182, directed=False,
 
 
 if __name__ == '__main__':
-    print 'Testing pynauty on some larger graphs.'
-    print 'Start ...'
+    print('Testing pynauty on some larger graphs.')
+    print('Start ...')
     passed = 0
     failed = 0
     for gname, g, numorbit, grpsize, gens in gag:
-        print '%-17s ...' % gname,
+        print('%-17s ...' % gname, end=' ')
         sys.stdout.flush()
         generators, order, o2, orbits, orbit_no = autgrp(g)
         if generators == gens and orbit_no == numorbit and order == grpsize:
-            print 'OK'
+            print('OK')
             passed += 1
         else:
-            print 'failed'
+            print('failed')
             failed +=1
-    print '... done.'
+    print('... done.')
     if failed > 0:
-        print 'passed = %d   failed = %d' % (passed, failed)
+        print('passed = %d   failed = %d' % (passed, failed))
     else:
-        print 'All tests passed.'
+        print('All tests passed.')
 
