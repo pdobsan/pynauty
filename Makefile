@@ -1,10 +1,18 @@
-PYTHON = python2
+
 NAUTY_DIR = nauty
-LIBPATH = $(wildcard build/lib.*)
+
+PYTHON = python
+python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
+python_version_major := $(word 1,${python_version_full})
+python_version_minor := $(word 2,${python_version_full})
+python_version_patch := $(word 3,${python_version_full})
+machine := $(shell uname -m)
+LIBPATH = build/lib.linux-$(machine)-${python_version_major}.${python_version_minor}
 
 
 help:
 	@echo Available targets:
+	@echo
 	@echo '  pynauty       - build the pynauty extension module'
 	@echo '  test          - run tests'
 	@echo '  clean         - remove all python related temp files and dirs'
@@ -16,7 +24,10 @@ help:
 	@echo '  nauty-objects - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
 	@echo '  nauty-progs   - build all nauty programs'
 	@echo '  clean-nauty   - a "distclean" for nauty'
-	@echo '  clobber       - clean and clean-nauty'
+	@echo '  clobber       - clean + clean-nauty +clean-docs'
+	@echo
+	@echo Python version: ${python_version_full}
+	@echo Machine type: ${machine}
 
 pynauty: nauty-objects
 	$(PYTHON) setup.py build
@@ -26,7 +37,6 @@ test: pynauty
 
 install: pynauty
 ifdef VIRTUAL_ENV
-	#$(PYTHON) setup.py install
 	pip install .
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
@@ -66,8 +76,8 @@ GTOOLS = copyg listg labelg dretog amtog geng complg shortg showg NRswitchg \
   multig planarg gentourng ranlabg runalltests subdivideg watercluster2 \
   linegraphg naucompare
 
-nauty-config: $(NAUTY_DIR)/makefile
-$(NAUTY_DIR)/makefile:
+nauty-config: $(NAUTY_DIR)/config.log
+$(NAUTY_DIR)/config.log:
 	cd $(NAUTY_DIR); ./configure CFLAGS='-O4 -fPIC'
 
 nauty-objects: nauty-config
