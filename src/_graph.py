@@ -3,6 +3,7 @@
 
 Module _graph contains various ADT-s for graphs and related utilities.
 '''
+from __future__ import absolute_import
 
 __LICENSE__     = '''
 Copyright (c) 2004-2011 Peter Dobcsanyi
@@ -23,7 +24,7 @@ __all__ = [
     'certificate',
 ]
 
-import _pynauty
+from . import _pynauty
 
 
 class Graph(object):
@@ -79,7 +80,7 @@ class Graph(object):
             key: a vertex, value: a list of vertices linked to the
             key vertex.
         '''
-        for v, vs in adjacency_dict.iteritems():
+        for v, vs in adjacency_dict.items():
             self._check_vertices([v])
             self._check_vertices(vs)
         self._adjacency_dict = adjacency_dict.copy()
@@ -137,7 +138,7 @@ class Graph(object):
         s = ['Graph(number_of_vertices=%d, directed=%s,' %
              (self.number_of_vertices, self.directed)]
         s.append(' adjacency_dict = {')
-        for k,v in self._adjacency_dict.iteritems():
+        for k,v in self._adjacency_dict.items():
             v.sort()
             s.append('  %d: %s,' % (k,v))
         s.append(' },')
@@ -192,7 +193,7 @@ def isomorphic(a, b):
     '''
     if a.number_of_vertices != b.number_of_vertices:
         return False
-    elif map(len, a.vertex_coloring) != map(len, b.vertex_coloring):
+    elif list(map(len, a.vertex_coloring)) != list(map(len, b.vertex_coloring)):
         return False
     else:
         return certificate(a) == certificate(b)

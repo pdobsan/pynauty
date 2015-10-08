@@ -17,6 +17,7 @@ Functions:
     certificate - Compute a "certificate" based on the canonical labeling
                   of the graph's vertices.
 '''
+from __future__ import absolute_import
 
 __version__ = '0.6'
 
@@ -31,8 +32,7 @@ it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
-
-from _graph import *
+from ._graph import *
 
 del _graph
 del _pynauty

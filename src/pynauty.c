@@ -16,6 +16,7 @@ GNU General Public License for more details.
 #include <nauty.h>
 #include <pynauty.h>
 
+
 //  static global (yuck) variables  -------------------------------------------
 
 // Nauty default options
@@ -239,7 +240,11 @@ static int set_partition(PyObject *py_graph, int *lab, int *ptn)
         iterator = PyObject_GetIter(pyset);
         
         while ((item = PyIter_Next(iterator))) {
+#if PY_MAJOR_VERSION >= 3
+            x = PyLong_AS_LONG(item);
+#else
             x = PyInt_AS_LONG(item);
+#endif
             Py_DECREF(item);
             lab[n] = x;
             ptn[n++] = 1;
@@ -332,7 +337,11 @@ NyGraph * _make_nygraph(PyObject *py_graph)
                 "Missing 'number_of_vertices' attribute");
         return NULL;
     }
+#if PY_MAJOR_VERSION >= 3
+    n = PyLong_AS_LONG(p);
+#else
     n = PyInt_AS_LONG(p);
+#endif
     Py_DECREF(p);
 
     // create an empty Nauty NyGraph object
@@ -363,12 +372,20 @@ NyGraph * _make_nygraph(PyObject *py_graph)
     // the adjacency matrix in the Nauty NyGraph g
     Py_ssize_t pos = 0;
     while (PyDict_Next(adjdict, &pos, &key, &adjlist)) {
+#if PY_MAJOR_VERSION >= 3
+        x = PyLong_AS_LONG(key);
+#else
         x = PyInt_AS_LONG(key);
+#endif
         adjlist_length =  PyObject_Length(adjlist);
         rowp = GRAPHROW(g->matrix, x, g->no_setwords);
         for (i=0; i < adjlist_length; i++) {
             p = PyList_GET_ITEM(adjlist, i);
+#if PY_MAJOR_VERSION >= 3
+            y = PyLong_AS_LONG(p);
+#else
             y = PyInt_AS_LONG(p);
+#endif
             ADDELEMENT(rowp, y);
             if (g->options->digraph == FALSE) {
                 ADDELEMENT((GRAPHROW(g->matrix, y, g->no_setwords)), x);
@@ -415,7 +432,8 @@ make_nygraph(PyObject *self, PyObject *args)
     g = _make_nygraph(py_graph);
     if (g == NULL) return NULL;
 
-    return PyCObject_FromVoidPtr((void *) g, NULL);
+    //return PyCObject_FromVoidPtr((void *) g, NULL);
+    return PyCapsule_New((void *) g, NULL, NULL);
 }
 
 
@@ -433,7 +451,8 @@ delete_nygraph(PyObject *self, PyObject *args) {
         return NULL;
     }
 
-    g = (NyGraph *) PyCObject_AsVoidPtr(p);
+    //g = (NyGraph *) PyCObject_AsVoidPtr(p);
+    g = (NyGraph *) PyCapsule_GetPointer(p, NULL);
     destroy_nygraph(g);
     return Py_BuildValue("");
 }
@@ -534,12 +553,28 @@ static PyMethodDef _pynauty_funcs[] = {
 };
 
 
+#if PY_MAJOR_VERSION >= 3
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    .m_name = "_pynauty",
+    .m_doc = PyDoc_STR("Graph (auto/iso)morphism wrapper for nauty"),
+    .m_size = -1,
+    .m_methods = _pynauty_funcs,
+};
+
+PyObject *
+PyInit__pynauty(void) {
+    PyObject *m;
+
+    m = PyModule_Create(&moduledef);
+    return m;
+#else
 void
 init_pynauty(void) {
     PyObject *m;
 
     m = Py_InitModule3("_pynauty", _pynauty_funcs,
-            "_pynauty graph auto/isomorphism module");
-
+            "Graph (auto/iso)morphism wrapper for nauty");
+#endif
 }
 
