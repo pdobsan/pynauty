@@ -1,7 +1,7 @@
 '''
-    _graph.py
+    graph.py
 
-Module _graph contains various ADT-s for graphs and related utilities.
+Module graph contains various ADT-s for graphs and related utilities.
 '''
 from __future__ import absolute_import
 
@@ -24,7 +24,7 @@ __all__ = [
     'certificate',
 ]
 
-from . import _pynauty
+from . import nautywrap
 
 
 class Graph(object):
@@ -163,7 +163,7 @@ def autgrp(g):
     '''
     if not isinstance(g, Graph):
         raise TypeError
-    return _pynauty.graph_autgrp(g)
+    return nautywrap.graph_autgrp(g)
 
 
 def certificate(g):
@@ -178,7 +178,7 @@ def certificate(g):
     '''
     if not isinstance(g, Graph):
         raise TypeError
-    return _pynauty.graph_cert(g)
+    return nautywrap.graph_cert(g)
 
 
 def isomorphic(a, b):

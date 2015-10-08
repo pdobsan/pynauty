@@ -1,5 +1,5 @@
 /*
-   pynauty.h
+   nautywrap.h
 
 Copyright (c) 2004-2011 Peter Dobcsanyi
 

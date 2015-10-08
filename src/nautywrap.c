@@ -1,5 +1,5 @@
 /*
-   pynauty.c
+   nautywrap.c
 
 Copyright (c) 2004-2011 Peter Dobcsanyi
 
@@ -14,7 +14,7 @@ GNU General Public License for more details.
 
 #include <Python.h>
 #include <nauty.h>
-#include <pynauty.h>
+#include <nautywrap.h>
 
 
 //  static global (yuck) variables  -------------------------------------------
@@ -544,7 +544,7 @@ graph_cert(PyObject *self, PyObject *args)
 
 //  Python module initialization  =============================================
 
-static PyMethodDef _pynauty_funcs[] = {
+static PyMethodDef nautywrap_methods[] = {
     {"graph_cert", graph_cert, METH_VARARGS, graph_cert_docs},
     {"graph_autgrp", graph_autgrp, METH_VARARGS, graph_autgrp_docs},
     {"make_nygraph", make_nygraph, METH_VARARGS, make_nygraph_docs},
@@ -556,24 +556,24 @@ static PyMethodDef _pynauty_funcs[] = {
 #if PY_MAJOR_VERSION >= 3
 static struct PyModuleDef moduledef = {
     PyModuleDef_HEAD_INIT,
-    .m_name = "_pynauty",
+    .m_name = "nautywrap",
     .m_doc = PyDoc_STR("Graph (auto/iso)morphism wrapper for nauty"),
     .m_size = -1,
-    .m_methods = _pynauty_funcs,
+    .m_methods = nautywrap_methods,
 };
 
 PyObject *
-PyInit__pynauty(void) {
+PyInit_nautywrap(void) {
     PyObject *m;
 
     m = PyModule_Create(&moduledef);
     return m;
 #else
 void
-init_pynauty(void) {
+initnautywrap(void) {
     PyObject *m;
 
-    m = Py_InitModule3("_pynauty", _pynauty_funcs,
+    m = Py_InitModule3("nautywrap", nautywrap_methods,
             "Graph (auto/iso)morphism wrapper for nauty");
 #endif
 }

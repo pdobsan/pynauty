@@ -32,9 +32,9 @@ it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
-from ._graph import *
+from .graph import *
 
-del _graph
-del _pynauty
+del graph
+del nautywrap
 
 # vim: expandtab:

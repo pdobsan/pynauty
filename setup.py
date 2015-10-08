@@ -28,8 +28,8 @@ if not os.access(nauty_dir, os.R_OK | os.X_OK):
     raise SystemExit(1)
 
 ext_pynauty = Extension(
-        name = MODULE + '._pynauty',
-        sources = [ pynauty_dir + '/' + 'pynauty.c', ],
+        name = MODULE + '.nautywrap',
+        sources = [ pynauty_dir + '/' + 'nautywrap.c', ],
         extra_compile_args = [ '-O4', '-fPIC' ],
         extra_objects = [ nauty_dir + '/' + 'nauty.o',
                           nauty_dir + '/' + 'nautil.o',
