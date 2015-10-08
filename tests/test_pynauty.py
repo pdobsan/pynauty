@@ -1228,7 +1228,10 @@ Graph(number_of_vertices=182, directed=False,
 
 if __name__ == '__main__':
     print('Testing pynauty on some larger graphs.')
-    print('Start ...')
+    print()
+    print('Python version: ' + sys.version)
+    print()
+    print('Starting ...')
     passed = 0
     failed = 0
     for gname, g, numorbit, grpsize, gens in gag:
