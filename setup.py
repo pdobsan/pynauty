@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 import os
 from distutils.core import setup, Extension
@@ -10,11 +11,26 @@ long_description = '''
 Package for testing isomorphism of graphs
 and computing their automorphism group.
 '''
-author          = 'Peter Dobcsanyi'
-author_email    = 'petrus@ftml.net'
-url             = ''
+author          = 'Peter Dobsan'
+author_email    = 'pdobsan@gmail.com'
+url             = 'https://github.com/pdobsan/pynauty'
 license         = 'GNU General Public License v3'
-platforms       = ['platform independent',]
+platforms       = ['Linux', 'Unix', 'OS X']
+classifiers     = [
+    'Environment :: Console',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: Unix',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: C',
+    'Topic :: Scientific/Engineering',
+    'Topic :: Scientific/Engineering :: Mathematics',
+    'Topic :: Scientific/Engineering :: Computing Science',
+    'Intended Audience :: Science/Research',
+    'Intended Audience :: Education',
+    'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+]
 
 pynauty_dir = 'src'
 package_dir     = { MODULE : pynauty_dir}
@@ -41,8 +57,6 @@ ext_pynauty = Extension(
     )
 ext_modules = [ ext_pynauty ]
 
-#os.umask(022)
-
 setup( name = MODULE, version = VERSION,
        description = description, long_description = long_description,
        author = author, author_email = author_email, url = url,
@@ -52,7 +66,8 @@ setup( name = MODULE, version = VERSION,
        packages = packages,
        scripts = scripts,
        data_files = data_files,
-       ext_modules = ext_modules
+       ext_modules = ext_modules,
+       classifiers = classifiers,
      )
 
 # vim: expandtab:
