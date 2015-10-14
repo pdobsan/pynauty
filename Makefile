@@ -2,6 +2,7 @@
 NAUTY_DIR = nauty
 
 PYTHON = python
+PIP = pip
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
 python_version_major := $(word 1,${python_version_full})
 python_version_minor := $(word 2,${python_version_full})
@@ -16,15 +17,17 @@ help:
 	@echo '  pynauty       - build the pynauty extension module'
 	@echo '  test          - run tests'
 	@echo '  clean         - remove all python related temp files and dirs'
-	@echo '  install       - install pynauty into a virtualenv'
-	@echo '  uninstall     - uninstall pynauty from a virtualenv'
+	@echo '  user-ins      - install pynauty into ~/.local/'
+	@echo '  user-unins    - uninstall pynauty from ~/.local/'
+	@echo '  virtenv-ins   - install pynauty into the active virtualenv'
+	@echo '  virtenv-unins - uninstall pynauty from the active virtualenv'
 	@echo '  dist          - create a source distribution'
 	@echo '  docs          - build pyanauty documentation'
 	@echo '  clean-docs    - remove pyanauty documentation'
 	@echo '  nauty-objects - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
 	@echo '  nauty-progs   - build all nauty programs'
 	@echo '  clean-nauty   - a "distclean" for nauty'
-	@echo '  clobber       - clean + clean-nauty +clean-docs'
+	@echo '  clobber       - clean + clean-nauty + clean-docs'
 	@echo
 	@echo Python version: ${python_version_full}
 	@echo Machine type: ${machine}
@@ -35,23 +38,29 @@ pynauty: nauty-objects
 test: pynauty
 	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_pynauty.py
 
-install: pynauty
+virtenv-ins: pynauty
 ifdef VIRTUAL_ENV
-	pip install .
+	$(PIP) install .
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot install, aborting ...
 	@exit 1
 endif
 
-uninstall:
+virtenv-unins:
 ifdef VIRTUAL_ENV
-	pip uninstall pynauty
+	$(PIP) uninstall pynauty
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot uninstall, aborting ...
 	@exit 1
 endif
+
+user-ins: pynauty
+	$(PIP) install --user .
+
+user-unins:
+	$(PIP) uninstall pynauty
 
 .PHONY: dist
 dist: docs
