@@ -2,7 +2,7 @@ Installation
 ============
 
 The source and documentation of the most recent version of
-**pynauty** is available as a compressed `tar-file`_.
+**pynauty** is available as a compressed tar-file_.
 
 
 Dependencies
@@ -10,82 +10,78 @@ Dependencies
 
 To build **pynauty** the following additional components are needed:
 
-    * Python 2.5 or newer.
+    * Python 2.7 or Python 3.5
     * The most recent version of Nauty_.
     * An ANSI C compiler.
 
-In general, **pynauty** should work on all platforms (Linux, Windows,
-Mac, etc.) where Python is available and Nauty's source can be complied.
+In theory, **pynauty** should work on all platforms where Python is
+available and Nauty's source can be complied. The instructions below are
+for Linux/Unix environment.
 
 
 Build
 -----
 
-Compiling Nauty
-^^^^^^^^^^^^^^^
+Download `pynauty's sources`_ as a compressed tar file and unpack it.
+That should create a directory like ``pynauty-X.Y.Z/`` containing the
+source files.
 
-Download the Nauty_ distribution. Unpack the tar file and change to the
-``nautyXX/`` directory where ``XX`` stands for the version.
-Type the following commands::
+Download the most recent sources of nauty from Nauty_ or from Traces_.
+That file should be something like ``nautyXYZ.tar.gz``.
 
-    ./configure
-    make nauty.o nautil.o naugraph.o
+Change to the directory ``pynauty-X.Y.Z/`` replacing ``X.Y.Z`` with the
+actual version of pynauty:
 
-Should you encounter any difficulties with compiling Nauty, please,
-consult Nauty's documentation.
+    cd pynauty-X.Y.Z
 
+Unpack ``nautyXYZ.tar.gz`` inside the ``pynauty-X.Y.Z/`` directory.
+Create a symbolic link named ``nauty`` to nauty's source directory
+replacing ``XYZ`` with the actual version of Nauty:
 
-Building pynauty
-^^^^^^^^^^^^^^^^
+    ln -s nautyXYZ nauty
 
-Untar the downloaded pynauty `tar-file`_ then change to the
-``pynauty-x.y/`` directory. Create a symbolic link named ``nauty`` to
-the directory which contains Nauty's source and compiled modules. For
-example::
+Pynauty can be built both for Python 2.7 or Python 3.5.
 
-    ln -s ../nautyXX nauty
+At this stage you have the option to create and activate a virtualenv
+and continue the building process within it. Otherwise the building
+process just picks your system wide python version which would be fine
+for most users.
 
-Replace ``XX`` with the actual version of Nauty.
+To build pynauty use the command:
 
-To build the **pynauty** extension module type the command::
+    make pynauty
 
-    python setup.py build
+That takes care compiling the necessary object files from nauty's source
+than compiling the pynauty Python extension module.
 
+To test the resulted package type:
 
-Testing
-^^^^^^^
+    make test
 
-After building pynauty, you can test the module using the script(s)
-in the ``tests/`` directory::
-
-    cd tests
-    PYTHONPATH=../build/lib.XXXXX python test_pynauty.py
-
-Replace ``XXXXXX`` with the actual part of directory's name.
-
+The test exercises pynauty on a few graphs considered difficult.
 
 Install
 -------
 
-If you want to install **pynauty** to the standard location in your
-system, type::
+To install pynauty to the standard user location in your home directory
+type:
 
-     python setup.py install
+    make user-ins
 
-On Unix/Linux you might need root privileges to execute this command.
-For alternative install methods and locations see::
+That puts the pynauty package files into
+~/.local/lib/python3.5/site-packages
 
-    python setup.py --help install
+To uninstall type:
 
-If you don't want to install the extension module at all, you can use it
-directly either by changing to the build directory::
+    make user-unins
 
-    cd build/lib.XXXXXX
+If you used a virtualenv you can install/uninstall pynauty within it by:
 
-or adding the above directory to your ``PYTHONPATH`` environment
-variable.  ``XXXXXX`` depends on you platform and the version of Python
-you are using. Note, you must use absolute path in ``PYTHONPATH``.
+    make virtenv-ins
+    make virtenv-unins
 
 
-.. _tar-file: pynauty-0.4.tar.gz
-.. _Nauty: http://cs.anu.edu.au/~bdm/nauty/
+.. _pynauty's sources:
+.. _tar-file: ../pynauty-0.6.0.tar.gz
+.. _Nauty: https://cs.anu.edu.au/people/Brendan.McKay/nauty/
+.. _Traces: http://pallini.di.uniroma1.it/
