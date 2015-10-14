@@ -6,7 +6,7 @@ Module graph contains various ADT-s for graphs and related utilities.
 from __future__ import absolute_import
 
 __LICENSE__     = '''
-Copyright (c) 2004-2011 Peter Dobcsanyi
+Copyright (c) 2015 Peter Dobsan
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -198,4 +198,3 @@ def isomorphic(a, b):
     else:
         return certificate(a) == certificate(b)
 
-# vim: expandtab:
