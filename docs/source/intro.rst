@@ -5,16 +5,15 @@ Introduction
 graphs for isomorphism and to determine their automorphism group.  It is
 based on the Nauty_ C procedures.
 
-The current version is 0.4
+The current version is 0.6.0
 
-**pynauty**  is compatible only with Python-2. A Python-3
-version is planned for the future.
+**pynauty**  is compatible with both Python 2.7 and Python 3.5.
 
 
 Licence
 -------
 
-Copyright (c) 2004-2011 Peter Dobcsanyi
+Copyright (c) 2015 Peter Dobsan
 
 **pynauty** is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -35,4 +34,4 @@ you need to download it separately. Nauty is covered by its own licencing
 terms. For details, see `Nauty's web-site`_.
 
 ..  _Nauty's web-site:
-.. _Nauty: http://cs.anu.edu.au/~bdm/nauty/
+.. _Nauty: https://cs.anu.edu.au/people/Brendan.McKay/nauty/
