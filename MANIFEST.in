@@ -1,5 +1,5 @@
 include COPYING README Release.notes
-include src/pynauty.h
+include src/nautywrap.h
 include Makefile
 recursive-include docs/build *
 recursive-include tests *
