@@ -70,7 +70,7 @@ Create a Graph object by connetcting some vertices step by step::
     >>> g.connect_vertex(2, [1, 3, 4])
     >>> g.connect_vertex(4, [3])
     >>> 
-    >>> print g
+    >>> print(g)
     Graph(number_of_vertices=5, directed=False,
      adjacency_dict = {
       0: [1, 2, 3],
@@ -102,7 +102,7 @@ Compute the automorphism group of the graph::
 Let's add a new edge and see how the automorphism group would change::
 
     >>> g.connect_vertex(1, [3])
-    >>> print g
+    >>> print(g)
     Graph(number_of_vertices=5, directed=False,
      adjacency_dict = {
       0: [1, 2, 3],
@@ -120,7 +120,7 @@ Let's add a new edge and see how the automorphism group would change::
 Fixing vertex 3 by coloring reduces the automorphism group::
 
     >>> g.set_vertex_coloring([set([3])])
-    >>> print g
+    >>> print(g)
     Graph(number_of_vertices=5, directed=False,
      adjacency_dict = {
       0: [1, 2, 3],
