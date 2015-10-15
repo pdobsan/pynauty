@@ -1,7 +1,8 @@
 '''
     graph.py
 
-Module graph contains various ADT-s for graphs and related utilities.
+Module graph contains the definition of the Graph class
+and utilities dealing with graph objects.
 '''
 from __future__ import absolute_import
 
@@ -22,14 +23,16 @@ __all__ = [
     'autgrp',
     'isomorphic',
     'certificate',
+    'delete_random_edge',
 ]
 
 from . import nautywrap
+import random
 
 
 class Graph(object):
     '''
-    Graph is an adjacency dictionary based graph object.
+    Graph instantiates an adjacency dictionary based graph object.
     It can represent vertex colored, directed or undirected graphs.
     '''
 
@@ -197,4 +200,33 @@ def isomorphic(a, b):
         return False
     else:
         return certificate(a) == certificate(b)
+
+
+def delete_random_edge(g):
+    '''
+    Delete a random edge from a graph.
+
+    *g*
+        A Graph object.
+
+    return ->
+        The deleted edge as a tuple or (None, None) if no edge is left.
+    '''
+    if g.adjacency_dict:
+        # pick a random vertex 'x' which is connected
+        x = random.sample(list(g.adjacency_dict),1)[0]
+        # remove a random edge connected to 'x'
+        xs = g.adjacency_dict[x]
+        y = xs.pop(random.randrange(len(xs)))
+        if not xs:
+            g.adjacency_dict.pop(x)
+        # if g is not directed make sure to remove edge completely
+        if (not g.directed) and y in g.adjacency_dict:
+            ys = g.adjacency_dict[y]
+            if x in ys:
+                ys.remove(x)
+    else:
+        # the graph has no edges
+        x, y = None, None
+    return (x, y)
 
