@@ -36,11 +36,12 @@ pynauty: nauty-objects
 	$(PYTHON) setup.py build
 
 test: pynauty
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_pynauty.py
+	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
+	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
 
 virtenv-ins: pynauty
 ifdef VIRTUAL_ENV
-	$(PIP) install .
+	$(PIP) install --upgrade .
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot install, aborting ...
@@ -57,7 +58,7 @@ else
 endif
 
 user-ins: pynauty
-	$(PIP) install --user .
+	$(PIP) install --user --upgrade .
 
 user-unins:
 	$(PIP) uninstall pynauty
