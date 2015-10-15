@@ -36,8 +36,8 @@ pynauty: nauty-objects
 	$(PYTHON) setup.py build
 
 test: pynauty
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
+	cd tests; PYTHONPATH="./../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
+	cd tests; PYTHONPATH=".:../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
 
 virtenv-ins: pynauty
 ifdef VIRTUAL_ENV
@@ -78,6 +78,7 @@ clean:
 	rm -fr build
 	rm -fr dist
 	rm -f MANIFEST
+	rm -fr tests/{__pycache__,data_graphs.pyc}
 
 # nauty stuff
 
