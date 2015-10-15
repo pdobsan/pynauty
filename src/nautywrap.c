@@ -535,8 +535,13 @@ graph_cert(PyObject *self, PyObject *args)
             g->options, g->stats,  g->workspace, g->worksize,
             g->no_setwords, g->no_vertices, g->cmatrix);
 
+#if PY_MAJOR_VERSION >= 3
+    pyret = Py_BuildValue("y#", g->cmatrix,
+            g->no_vertices * g->no_setwords * sizeof(setword));
+#else
     pyret = Py_BuildValue("s#", g->cmatrix,
             g->no_vertices * g->no_setwords * sizeof(setword));
+#endif
     destroy_nygraph(g);
     return pyret;
 }
