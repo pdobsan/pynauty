@@ -69,7 +69,7 @@ type:
     make user-ins
 
 That puts the pynauty package files into
-~/.local/lib/python3.5/site-packages
+~/.local/lib/pythonM.N/site-packages, where M.N is your python's version.
 
 To uninstall type:
 
@@ -80,6 +80,7 @@ If you used a virtualenv you can install/uninstall pynauty within it by:
     make virtenv-ins
     make virtenv-unins
 
+Please note, the install/unistall procedures use ``pip``.
 
 .. _pynauty's sources:
 .. _tar-file: ../pynauty-0.6.0.tar.gz
