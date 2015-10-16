@@ -54,9 +54,9 @@ To build pynauty use the command:
 That takes care compiling the necessary object files from nauty's source
 than compiling the pynauty Python extension module.
 
-To test the resulted package type:
+To run all the tests coming with the package type:
 
-    make test
+    make tests
 
 The test exercises pynauty on a few graphs considered difficult.
 

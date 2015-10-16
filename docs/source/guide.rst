@@ -140,7 +140,8 @@ Fixing vertex 3 by coloring reduces the automorphism group::
 
 Testing two graphs for isomorphism:
 
-. code-block:: Python
+.. code-block:: python
+
 	In [8]: print(a)
 	Graph(number_of_vertices=13, directed=False,
 	 adjacency_dict = {
