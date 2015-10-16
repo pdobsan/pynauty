@@ -1,7 +1,15 @@
-Important chnages in version 0.6
+Changes in version 0.6
 
-  - Lifted the python2.X interpreter into make variable PYTHON.
-    Please, set it to your system's version of python before building.
+  - Made pynauty compatible with both Python 2.7 and 3.5
 
-  - Fixed a pointer underflow bug - thanks to Gregory Puleo <gpuleo@gmail.com>
+  - Pynauty now works with nauty25r9.
+
+  - Extended tests to cover computing automorphims groups, orbits and
+    testing isomorphism.
+
+  - Added Makefile to provide build, test, install, uninstall (in
+    virtualenv and user's home directroy), etc.  targets. 
+  
+  - Fixed a pointer underflow bug - thanks to Gregory Puleo
+    <gpuleo@gmail.com>
 
