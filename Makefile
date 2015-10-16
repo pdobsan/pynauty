@@ -15,7 +15,7 @@ help:
 	@echo Available targets:
 	@echo
 	@echo '  pynauty       - build the pynauty extension module'
-	@echo '  test          - run tests'
+	@echo '  tests         - run all tests'
 	@echo '  clean         - remove all python related temp files and dirs'
 	@echo '  user-ins      - install pynauty into ~/.local/'
 	@echo '  user-unins    - uninstall pynauty from ~/.local/'
@@ -35,7 +35,8 @@ help:
 pynauty: nauty-objects
 	$(PYTHON) setup.py build
 
-test: pynauty
+.PHONY: tests
+tests: pynauty
 	cd tests; PYTHONPATH="./../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
 	cd tests; PYTHONPATH=".:../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
 
