@@ -4,7 +4,7 @@ Changes in version 0.6
 
   - Pynauty now works with nauty25r9.
 
-  - Extended tests to cover computing automorphims groups, orbits and
+  - Extended tests to cover computing automorphism groups, orbits and
     testing isomorphism.
 
   - Added Makefile to provide build, test, install, uninstall (in
