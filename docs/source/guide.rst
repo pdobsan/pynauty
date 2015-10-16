@@ -53,6 +53,7 @@ Functions
 .. autofunction:: autgrp
 .. autofunction:: isomorphic
 .. autofunction:: certificate
+.. autofunction:: delete_random_edge
 
 
 Examples
@@ -136,4 +137,57 @@ Fixing vertex 3 by coloring reduces the automorphism group::
     >>> autgrp(g)
     ([[1, 0, 2, 3, 4]], 2.0, 0, [0, 0, 2, 3, 4], 4)
     >>> 
+
+Testing two graphs for isomorphism:
+
+. code-block:: Python
+	In [8]: print(a)
+	Graph(number_of_vertices=13, directed=False,
+	 adjacency_dict = {
+	  0: [6, 7, 8, 9],
+	  1: [6, 7, 8, 11],
+	  2: [7, 8, 10, 12],
+	  3: [7, 9, 11, 12],
+	  4: [8, 10, 11, 12],
+	  5: [9, 10, 11, 12],
+	  6: [0, 1, 9, 10],
+	  7: [0, 1, 2, 3],
+	  8: [0, 1, 2, 4],
+	  9: [0, 3, 5, 6],
+	  10: [2, 4, 5, 6],
+	  11: [1, 3, 4, 5],
+	  12: [2, 3, 4, 5],
+	 },
+	 vertex_coloring = [
+	 ],
+	)
+
+	In [9]: b = deepcopy(a)
+
+	In [10]: delete_random_edge(b)
+	Out[10]: (9, 3)
+
+	In [11]: print(b)
+	Graph(number_of_vertices=13, directed=False,
+	 adjacency_dict = {
+	  0: [6, 7, 8, 9],
+	  1: [6, 7, 8, 11],
+	  2: [7, 8, 10, 12],
+	  3: [7, 11, 12],
+	  4: [8, 10, 11, 12],
+	  5: [9, 10, 11, 12],
+	  6: [0, 1, 9, 10],
+	  7: [0, 1, 2, 3],
+	  8: [0, 1, 2, 4],
+	  9: [0, 5, 6],
+	  10: [2, 4, 5, 6],
+	  11: [1, 3, 4, 5],
+	  12: [2, 3, 4, 5],
+	 },
+	 vertex_coloring = [
+	 ],
+	)
+
+	In [12]: isomorphic(a,b)
+	Out[12]: False
 
