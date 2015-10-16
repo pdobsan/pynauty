@@ -3,3 +3,4 @@ include src/nautywrap.h
 include Makefile
 recursive-include docs/build *
 recursive-include tests *
+global-exclude __pycache__/* *.pyc
