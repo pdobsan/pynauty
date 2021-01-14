@@ -1,0 +1,37 @@
+# temporary directories
+tmp/
+
+# Compiled files
+*.o
+*.so
+a.out
+
+# Python
+# compiled files
+*.pyc
+*.pyo
+__pycache__/
+.mypy_cache/
+# distutils/setuptools
+build/
+*.egg-info/
+temp/
+dist/
+installed-files.log
+MANIFEST
+# virtualenv
+.venv/
+
+# Sphinx, docutils
+_build/
+
+# tar, backup, archive files
+*.bak
+*.tar.gz
+*.tar.bz2
+*.a
+
+# nauty
+nauty
+nauty*/
+
