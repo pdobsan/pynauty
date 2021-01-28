@@ -10,7 +10,7 @@ Dependencies
 
 To build **pynauty** the following additional components are needed:
 
-    * Python 2.7 or Python 3.5
+    * Python 3.5 - 3.9
     * The most recent version of Nauty_.
     * An ANSI C compiler.
 
@@ -40,7 +40,7 @@ replacing ``XYZ`` with the actual version of Nauty:
 
     ln -s nautyXYZ nauty
 
-Pynauty can be built both for Python 2.7 or Python 3.5.
+Pynauty can be built both for Python 3.5 - 3.9
 
 At this stage you have the option to create and activate a virtualenv
 and continue the building process within it. Otherwise the building
@@ -83,6 +83,6 @@ If you used a virtualenv you can install/uninstall pynauty within it by:
 Please note, the install/unistall procedures use ``pip``.
 
 .. _pynauty's sources:
-.. _tar-file: ../pynauty-0.6.0.tar.gz
+.. _tar-file: ../pynauty-0.7.0.tar.gz
 .. _Nauty: https://cs.anu.edu.au/people/Brendan.McKay/nauty/
-.. _Traces: http://pallini.di.uniroma1.it/
+.. _Traces: https://pallini.di.uniroma1.it/
