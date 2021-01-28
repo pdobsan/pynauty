@@ -1,3 +1,9 @@
+Changes in version 0.7
+
+  - Pynauty works with Python 3.5-3.9 and nauty27r1
+
+  - Dropped  Python 2.7 support.
+
 Changes in version 0.6
 
   - Made pynauty compatible with both Python 2.7 and 3.5
