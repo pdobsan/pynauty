@@ -17,12 +17,11 @@ Functions:
     certificate - Compute a "certificate" based on the canonical labeling
                   of the graph's vertices.
 '''
-from __future__ import absolute_import
 
-__version__ = '0.6'
+__version__ = '0.7'
 
 __LICENSE__     = '''
-Copyright (c) 2015 Peter Dobsan
+Copyright (c) 2015-2021 Peter Dobsan
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the

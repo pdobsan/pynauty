@@ -4,7 +4,7 @@ import os
 from distutils.core import setup, Extension
 
 MODULE          = 'pynauty'
-VERSION         = '0.6.0'
+VERSION         = '0.7.0'
 
 description     = 'Automorphism and isomorphism of graphs'
 long_description = '''
@@ -21,8 +21,8 @@ classifiers     = [
     'Operating System :: POSIX :: Linux',
     'Operating System :: Unix',
     'Programming Language :: Python',
-    'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.9',
     'Programming Language :: C',
     'Topic :: Scientific/Engineering',
     'Topic :: Scientific/Engineering :: Mathematics',
