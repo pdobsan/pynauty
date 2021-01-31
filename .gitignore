@@ -24,6 +24,7 @@ MANIFEST
 
 # Sphinx, docutils
 _build/
+README.html
 
 # tar, backup, archive files
 *.bak
