@@ -74,14 +74,13 @@ class InstallNauty(Command):
             urllib.request.urlretrieve(
                 f"http://users.cecs.anu.edu.au/~bdm/nauty/nauty{nauty_version}.tar.gz",
                 f"nauty{nauty_version}.tar.gz",)
-        print("Extracting nauty.")
-        with tarfile.open(f"nauty{nauty_version}.tar.gz") as tar:
-            tar.extractall(cwd)
-            os.rename(os.path.join(cwd,f"nauty{nauty_version}"), nauty_dir)
+        if not os.path.exists(os.path.join(nauty_dir,'nauty.c')):
+            print("Extracting nauty.")
+            with tarfile.open(f"nauty{nauty_version}.tar.gz") as tar:
+                tar.extractall(cwd)
+                os.rename(os.path.join(cwd,f"nauty{nauty_version}"), nauty_dir)
         print("Building nauty")
-        subprocess.check_call(
-            ["make", "nauty"], cwd=nauty_dir
-           )
+        subprocess.check_call(["make", "nauty-objects"], cwd=cwd)
 
 class InstallCommand(install):
     def run(self):
