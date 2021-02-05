@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 
 import os
+import urllib.request
+import tarfile
+import subprocess
+from distutils.cmd import Command
+from setuptools.command.install import install
 from distutils.core import setup, Extension
+
 
 MODULE          = 'pynauty'
 VERSION         = '0.7.0'
@@ -38,10 +44,51 @@ packages        = [ MODULE ]
 scripts         = []
 data_files      = []
 
-nauty_dir       = 'nauty'  # nauty's source directory
-if not os.access(nauty_dir, os.R_OK | os.X_OK):
-    print("Can't find nauty_dir: %s" % nauty_dir)
-    raise SystemExit(1)
+cwd = os.getcwd()
+# nauty's source directory
+nauty_dir       = os.path.join(cwd,'nauty')
+nauty_version   = '27r1'
+
+class InstallNauty(Command):
+    """Fetch and install nauty, if not present already"""
+    description = "ensure nauty is built"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        """Run the command.
+
+        Fetches and installs nauty.
+        """
+        if os.path.exists(os.path.join(nauty_dir,'nauty.o')):
+            #todo: add version check
+            return
+
+        if not os.path.exists(os.path.join(cwd,f"nauty{nauty_version}.tar.gz")):
+            print("Fetching nauty.")
+            urllib.request.urlretrieve(
+                f"http://users.cecs.anu.edu.au/~bdm/nauty/nauty{nauty_version}.tar.gz",
+                f"nauty{nauty_version}.tar.gz",)
+        print("Extracting nauty.")
+        with tarfile.open(f"nauty{nauty_version}.tar.gz") as tar:
+            tar.extractall(cwd)
+            os.rename(os.path.join(cwd,f"nauty{nauty_version}"), nauty_dir)
+        print("Building nauty")
+        subprocess.check_call(
+            ["make", "nauty"], cwd=nauty_dir
+           )
+
+class InstallCommand(install):
+    def run(self):
+        self.run_command("nauty")
+        # See: https://cbuelter.wordpress.com/2015/10/25/extend-the-setuptools-install-command/comment-page-1/
+        self.do_egg_install()
+
 
 ext_pynauty = Extension(
         name = MODULE + '.nautywrap',
@@ -68,6 +115,9 @@ setup( name = MODULE, version = VERSION,
        data_files = data_files,
        ext_modules = ext_modules,
        classifiers = classifiers,
+       cmdclass={ 'nauty' : InstallNauty,
+                  'install' : InstallCommand
+                 }
      )
 
 # vim: expandtab:
