@@ -66,6 +66,7 @@ setup( name = MODULE, version = VERSION,
        packages = packages,
        scripts = scripts,
        data_files = data_files,
+       tests_require=["pytest"],
        ext_modules = ext_modules,
        classifiers = classifiers,
      )
