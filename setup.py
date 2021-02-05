@@ -49,6 +49,13 @@ cwd = os.getcwd()
 nauty_dir       = os.path.join(cwd,'nauty')
 nauty_version   = '27r1'
 
+def deltree(target):
+    for d in os.listdir(target):
+        try:
+            deltree(os.path.join(target,d))
+        except OSError:
+            os.remove(os.path.join(target,d))
+
 class InstallNauty(Command):
     """Fetch and install nauty, if not present already"""
     description = "ensure nauty is built"
@@ -66,15 +73,15 @@ class InstallNauty(Command):
         Fetches and installs nauty.
         """
         if os.path.exists(os.path.join(nauty_dir,'nauty.o')):
-            #todo: add version check
+            #todo: maybe add a check for the nauty version
             return
 
         if not os.path.exists(os.path.join(cwd,f"nauty{nauty_version}.tar.gz")):
+            deltree(nauty_dir)
             print("Fetching nauty.")
             urllib.request.urlretrieve(
                 f"http://users.cecs.anu.edu.au/~bdm/nauty/nauty{nauty_version}.tar.gz",
                 f"nauty{nauty_version}.tar.gz",)
-        if not os.path.exists(os.path.join(nauty_dir,'nauty.c')):
             print("Extracting nauty.")
             with tarfile.open(f"nauty{nauty_version}.tar.gz") as tar:
                 tar.extractall(cwd)
