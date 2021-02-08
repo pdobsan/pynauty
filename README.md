@@ -3,8 +3,8 @@
 Pynauty can be used to compare graphs for isomorphism and to determine
 their automorphism group in a Python programming environment.  Pynauty
 is a Python/C extension module using library components from the
-[Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay and
-Adolfo Piperno.
+[Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay.
+
 
 ## Installation
 
