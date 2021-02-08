@@ -18,8 +18,6 @@ Functions:
                   of the graph's vertices.
 '''
 
-__version__ = '0.7'
-
 __LICENSE__     = '''
 Copyright (c) 2015-2021 Peter Dobsan
 
@@ -31,8 +29,15 @@ it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
-from .graph import *
 
-del graph
-del nautywrap
+from .versions import *
+__version__ = pynauty_version + '+' + nauty_version
 
+try:
+    from .graph import *
+except ImportError:
+    pass
+else:
+    del graph
+    del nautywrap
+    del versions
