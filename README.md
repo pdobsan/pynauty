@@ -1,26 +1,42 @@
 # Pynauty 
 
-__Version: 0.7__
-
 Pynauty can be used to compare graphs for isomorphism and to determine
-their automorphism group.  Pynauty is a Python/C extension module using
-library components from the Nauty package by Brendan McKay.
+their automorphism group in a Python programming environment.  Pynauty
+is a Python/C extension module using library components from the
+[Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay and
+Adolfo Piperno.
 
 ## Installation
 
 ### Requirements
 
-  - Python 3.5 - 3.9
+  - Python 3.6 - 3.9
   - An ANSI C compiler 
-  - The most recent version of [Nauty](https://cs.anu.edu.au/people/Brendan.McKay/nauty/)
+  - The most recent version of Nauty, currently `nauty27r1`.
 
 ### Building
 
-```shell
-make pynauty
+Download [naughty27r1](https://pallini.di.uniroma1.it/nauty27r1.tar.gz)
+source code into the `src/` subdirectory and `untar` it there.
+
+```bash
+  cd src/
+  curl -O https://pallini.di.uniroma1.it/nauty27r1.tar.gz
+  sha1sum -c nauty27r1.tar.gz.sha1sum
+  tar xf nauty27r1.tar.gz
 ```
 
-For detailed instructions for installation see the documentation.
+Build, test, install `pynauty` using `make` in the root directory of the
+package.
+
+```bash
+  make pynauty
+  make tests
+  make user-ins
+  make docs
+```
+
+Invoking `make` without arguments will list all possible targets.
 
 ## Usage
 
@@ -47,8 +63,8 @@ Graph(number_of_vertices=5, directed=False,
 
 ## Documentation
 
-For documentation, including instructions for  installation, API and
-User's Guide see the docs/ directory.
+For detailed documentation, API and User's Guide see the `docs/`
+directory after building as above.
 
 ## Contributing
 
