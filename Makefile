@@ -1,5 +1,5 @@
 PYTHON = python3
-PIP = pip
+PIP = pip3
 NAUTY_DIR = $(shell $(PYTHON) -m src.pynauty nauty-dir)
 
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
