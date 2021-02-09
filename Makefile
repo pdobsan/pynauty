@@ -1,6 +1,6 @@
-PYTHON = python
+PYTHON = python3
 PIP = pip
-NAUTY_DIR = src/$(shell $(PYTHON) src/pynauty/versions.py)
+NAUTY_DIR = $(shell $(PYTHON) -m src.pynauty nauty-dir)
 
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
 python_version_major := $(word 1,${python_version_full})

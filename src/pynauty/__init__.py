@@ -30,8 +30,19 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
 
-from .versions import *
-__version__ = pynauty_version + '+' + nauty_version
+_nauty_version = 'nauty27r1'
+_nauty_url = 'https://cs.anu.edu.au/people/Brendan.McKay/nauty/' + _nauty_version +'.tar.gz'
+_nauty_url = 'https://pallini.di.uniroma1.it/' + _nauty_version +'.tar.gz'
+_nauty_dir = 'src/' + _nauty_version
+_pynauty_version = '1.0b1'
+
+__version__ = _pynauty_version + '+' + _nauty_version
+
+def Version():
+    '''
+    Return the combined version of the pynauty package.
+    '''
+    return('Pynauty version ' + __version__)
 
 try:
     from .graph import *
@@ -40,4 +51,3 @@ except ImportError:
 else:
     del graph
     del nautywrap
-    del versions
