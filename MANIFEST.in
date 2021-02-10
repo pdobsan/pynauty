@@ -1,7 +1,8 @@
 include COPYING README.md Release.notes
+include Makefile
 include src/nauty27r1.tar.gz.sha1sum
 include src/pynauty/nautywrap.h
-include Makefile
+include src/Makefile
 recursive-include docs/build *
 recursive-include tests *
 global-exclude __pycache__/* *.pyc

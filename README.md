@@ -14,20 +14,22 @@ is a Python/C extension module using library components from the
   - An ANSI C compiler 
   - The most recent version of Nauty, currently `nauty27r1`.
 
-### Building
+### Building from source
 
-Download [naughty27r1](https://pallini.di.uniroma1.it/nauty27r1.tar.gz)
-source code into the `src/` subdirectory and `untar` it there.
+Clone this repository:
 
 ```bash
-  cd src/
-  curl -O https://pallini.di.uniroma1.it/nauty27r1.tar.gz
-  sha1sum -c nauty27r1.tar.gz.sha1sum
-  tar xf nauty27r1.tar.gz
+  git clone https://github.com/pdobsan/pynauty
 ```
 
-Build, test, install `pynauty` using `make` in the root directory of the
-package.
+You also need to download Nauty's source code:
+
+```bash
+  cd pynauty
+  make fetch-nauty
+```
+
+Build, test, install the `pynauty` package.
 
 ```bash
   make pynauty
@@ -36,7 +38,7 @@ package.
   make docs
 ```
 
-Invoking `make` without arguments will list all possible targets.
+Invoking `make` without arguments will list many more targets.
 
 ## Usage
 
