@@ -22,20 +22,36 @@ Clone this repository:
   git clone https://github.com/pdobsan/pynauty
 ```
 
-You also need to download Nauty's source code:
+and change into the `pynauty/` directory created by the cloning.
 
-```bash
-  cd pynauty
-  make fetch-nauty
-```
+Nauty's source code is not distributed with `pynauty`, however it is
+automatically downloaded during the building process. 
 
-Build, test, install the `pynauty` package.
+To build and test the package:
 
 ```bash
   make pynauty
   make tests
+```
+
+To install the `pynauty` package in `~/.local` (home install) and then
+to generate the documentation:
+
+```bash
   make user-ins
   make docs
+```
+
+It is also possible to install into a virtual environment. 
+
+```bash
+  % make virtenv-create
+  python3 -m venv .venv-pynauty
+  Created virtualenv: .venv-pynauty
+  To activate it type: source ./.venv-pynauty/bin/activate
+  % source .venv-pynauty/bin/activate
+  (.venv-pynauty) % make virtenv-ins
+  ...
 ```
 
 Invoking `make` without arguments will list many more targets.

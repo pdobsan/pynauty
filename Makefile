@@ -16,24 +16,29 @@ platform := "$(shell uname -a)"
 machine := $(shell uname -m)
 LIBPATH = build/lib.linux-$(machine)-${python_version_major}.${python_version_minor}
 
+VENV_DIR = .venv-pynauty
 
 help:
 	@echo Available targets:
 	@echo
-	@echo '  pynauty       - build the pynauty extension module'
-	@echo '  tests         - run all tests'
-	@echo '  clean         - remove all python related temp files and dirs'
-	@echo '  user-ins      - install pynauty into ~/.local/'
-	@echo '  user-unins    - uninstall pynauty from ~/.local/'
-	@echo '  virtenv-ins   - install pynauty into the active virtualenv'
-	@echo '  virtenv-unins - uninstall pynauty from the active virtualenv'
-	@echo '  dist          - create a source distribution'
-	@echo '  docs          - build pyanauty documentation'
-	@echo '  clean-docs    - remove pyanauty documentation'
-	@echo '  nauty-objects - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
-	@echo '  nauty-progs   - build all nauty programs'
-	@echo '  clean-nauty   - a "distclean" for nauty'
-	@echo '  clobber       - clean + clean-nauty + clean-docs'
+	@echo '  pynauty        - build the pynauty extension module'
+	@echo '  tests          - run all tests'
+	@echo '  clean          - remove all python related temp files and dirs'
+	@echo '  virtenv-create - create virtualenv:' $(VENV_DIR)
+	@echo '  virtenv-ins    - install pynauty into the active virtualenv'
+	@echo '  virtenv-unins  - uninstall pynauty from the active virtualenv'
+	@echo '  virtenv-delete - delete virtualenv:' $(VENV_DIR)
+	@echo '  user-ins       - install pynauty into ~/.local/'
+	@echo '  user-unins     - uninstall pynauty from ~/.local/'
+	@echo '  dist           - create a source distribution'
+	@echo '  docs           - build pyanauty documentation'
+	@echo '  clean-docs     - remove pyanauty documentation'
+	@echo '  fetch-nauty    - download Nauty source files'
+	@echo '  nauty-objects  - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
+	@echo '  nauty-progs    - build all nauty programs'
+	@echo '  clean-nauty    - a "distclean" for nauty'
+	@echo '  remove-nauty   - remove all nauty related files'
+	@echo '  clobber        - clean + remove-nauty + clean-docs'
 	@echo
 	@echo 'Pynauty version:' ${PYNAUTY_VERSION}
 	@echo 'Nauty version:  ' ${NAUTY_VERSION}
@@ -49,6 +54,17 @@ pynauty: nauty-objects
 tests: pynauty
 	cd tests; PYTHONPATH="./../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
 	cd tests; PYTHONPATH=".:../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
+
+.PHONY: virtenv-create
+virtenv-create:
+	$(PYTHON) -m venv $(VENV_DIR) #--system-site-packages
+	@echo Created virtualenv: $(VENV_DIR)
+	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
+
+virtenv-delete:
+	rm -fr $(VENV_DIR)
+	@echo Deleted virtualenv: $(VENV_DIR)
+	@echo If it is still active, deactivate it!
 
 virtenv-ins: pynauty
 ifdef VIRTUAL_ENV
@@ -85,11 +101,13 @@ docs:
 clean-docs:
 	cd docs; make clean
 
-clean:
+clean: virtenv-delete
 	rm -fr build
 	rm -fr dist
 	rm -f MANIFEST
 	rm -fr tests/{__pycache__,data_graphs.pyc}
+	rm -fr .pytest_cache/
+	rm -fr pynauty.egg-info
 
 # nauty stuff
 
@@ -103,7 +121,7 @@ fetch-nauty:
 	cd src/; make fetch-nauty
 
 nauty-config: $(NAUTY_DIR)/config.log
-$(NAUTY_DIR)/config.log:
+$(NAUTY_DIR)/config.log: fetch-nauty
 	cd $(NAUTY_DIR); ./configure CFLAGS='-O4 -fPIC'
 
 nauty-objects: nauty-config
@@ -115,7 +133,9 @@ nauty-programs: nauty-config
 clean-nauty:
 	cd $(NAUTY_DIR); rm -f *.o dreadnaut ${GTOOLS} nauty.a nauty1.a
 	cd $(NAUTY_DIR); rm -f makefile config.log config.status gtools.h naututil.h nauty.h
+
+remove-nauty:
 	cd src/; make clean
 
-clobber: clean clean-nauty clean-docs
+clobber: clean remove-nauty clean-docs
 
