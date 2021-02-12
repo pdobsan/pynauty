@@ -1,26 +1,60 @@
 # Pynauty 
 
-__Version: 0.7__
-
 Pynauty can be used to compare graphs for isomorphism and to determine
-their automorphism group.  Pynauty is a Python/C extension module using
-library components from the Nauty package by Brendan McKay.
+their automorphism group in a Python programming environment.  Pynauty
+is a Python/C extension module using library components from the
+[Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay.
+
 
 ## Installation
 
 ### Requirements
 
-  - Python 3.5 - 3.9
+  - Python 3.6 - 3.9
   - An ANSI C compiler 
-  - The most recent version of [Nauty](https://cs.anu.edu.au/people/Brendan.McKay/nauty/)
+  - The most recent version of Nauty, currently `nauty27r1`.
 
-### Building
+### Building from source
 
-```shell
-make pynauty
+Clone this repository:
+
+```bash
+  git clone https://github.com/pdobsan/pynauty
 ```
 
-For detailed instructions for installation see the documentation.
+and change into the `pynauty/` directory created by the cloning.
+
+Nauty's source code is not distributed with `pynauty`, however it is
+automatically downloaded during the building process. 
+
+To build and test the package:
+
+```bash
+  make pynauty
+  make tests
+```
+
+To install the `pynauty` package in `~/.local` (home install) and then
+to generate the documentation:
+
+```bash
+  make user-ins
+  make docs
+```
+
+It is also possible to install into a virtual environment. 
+
+```bash
+  % make virtenv-create
+  python3 -m venv .venv-pynauty
+  Created virtualenv: .venv-pynauty
+  To activate it type: source ./.venv-pynauty/bin/activate
+  % source .venv-pynauty/bin/activate
+  (.venv-pynauty) % make virtenv-ins
+  ...
+```
+
+Invoking `make` without arguments will list many more targets.
 
 ## Usage
 
@@ -47,8 +81,8 @@ Graph(number_of_vertices=5, directed=False,
 
 ## Documentation
 
-For documentation, including instructions for  installation, API and
-User's Guide see the docs/ directory.
+For detailed documentation, API and User's Guide see the `docs/`
+directory after building as above.
 
 ## Contributing
 

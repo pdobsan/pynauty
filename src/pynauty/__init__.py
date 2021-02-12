@@ -18,8 +18,6 @@ Functions:
                   of the graph's vertices.
 '''
 
-__version__ = '0.7'
-
 __LICENSE__     = '''
 Copyright (c) 2015-2021 Peter Dobsan
 
@@ -31,8 +29,27 @@ it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
-from .graph import *
 
-del graph
-del nautywrap
+_nauty_version   = 'nauty27r1'
+_nauty_tarfile   = _nauty_version + '.tar.gz'
+_nauty_checksum  = _nauty_tarfile + '.sha1sum'
+_nauty_url       = 'https://cs.anu.edu.au/people/Brendan.McKay/nauty/' + _nauty_tarfile
+_nauty_url       = 'https://pallini.di.uniroma1.it/' + _nauty_tarfile
+_nauty_dir       = 'src/' + _nauty_version
 
+_pynauty_version = '1.0b1'
+__version__      = _pynauty_version + '+' + _nauty_version
+
+def Version():
+    '''
+    Return the combined version of the pynauty package.
+    '''
+    return('Pynauty version ' + __version__)
+
+try:
+    from .graph import *
+except ImportError:
+    pass
+else:
+    del graph
+    del nautywrap
