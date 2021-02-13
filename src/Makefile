@@ -18,8 +18,11 @@ endif
 
 help:
 	@echo Available targets:
-	@echo ' fetch-nauty  - fetch nauty source distribution'
-	@echo ' remove-nauty - delete nauty source and related files'
+	@echo '  fetch-nauty    - download Nauty source files'
+	@echo '  nauty-objects  - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
+	@echo '  nauty-programs - build all nauty programs'
+	@echo '  clean-nauty    - a "distclean" for nauty'
+	@echo '  remove-nauty   - remove all nauty related files'
 	@echo
 	@echo 'Pynauty version:' ${PYNAUTY_VERSION}
 	@echo 'Nauty version:  ' ${NAUTY_VERSION}
@@ -47,6 +50,11 @@ nauty-objects: nauty-config
 
 nauty-programs: nauty-config
 	cd $(NAUTY_DIR); make
+
+GTOOLS = copyg listg labelg dretog amtog geng complg shortg showg NRswitchg \
+  biplabg addedgeg deledgeg countg pickg genrang newedgeg catg genbg directg \
+  multig planarg gentourng ranlabg runalltests subdivideg watercluster2 \
+  linegraphg naucompare
 
 clean-nauty:
 	cd $(NAUTY_DIR); rm -f *.o dreadnaut ${GTOOLS} nauty.a nauty1.a

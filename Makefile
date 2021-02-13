@@ -36,7 +36,6 @@ help:
 	@echo '  clean-docs     - remove pyanauty documentation'
 	@echo '  fetch-nauty    - download Nauty source files'
 	@echo '  nauty-objects  - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
-	@echo '  nauty-progs    - build all nauty programs'
 	@echo '  clean-nauty    - a "distclean" for nauty'
 	@echo '  remove-nauty   - remove all nauty related files'
 	@echo '  clobber        - clean + remove-nauty + clean-docs'
@@ -110,12 +109,7 @@ clean: virtenv-delete
 	rm -fr .pytest_cache/
 	rm -fr pynauty.egg-info
 
-# nauty stuff
-
-GTOOLS = copyg listg labelg dretog amtog geng complg shortg showg NRswitchg \
-  biplabg addedgeg deledgeg countg pickg genrang newedgeg catg genbg directg \
-  multig planarg gentourng ranlabg runalltests subdivideg watercluster2 \
-  linegraphg naucompare
+# nauty targets
 
 fetch-nauty:
 	cd $(SOURCE_DIR); make $@
