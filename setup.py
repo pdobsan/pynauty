@@ -38,7 +38,7 @@ packages        = [ MODULE ]
 scripts         = []
 data_files      = []
 
-nauty_dir       = 'src/' + pynauty._nauty_version
+nauty_dir       = 'src/' + pynauty._nauty_dir
 if not os.access(nauty_dir, os.R_OK | os.X_OK):
     print("Can't find nauty_dir: %s" % nauty_dir)
     raise SystemExit(1)

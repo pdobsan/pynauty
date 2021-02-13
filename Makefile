@@ -1,12 +1,13 @@
 PYTHON = python3
 PIP = $(PYTHON) -m pip
 
-PYNAUTY_VERSION = $(shell $(PYTHON) -m src.pynauty pynauty-version)
-NAUTY_VERSION = $(shell $(PYTHON) -m src.pynauty nauty-version)
-NAUTY_TARFILE = $(shell $(PYTHON) -m src.pynauty nauty-tarfile)
-NAUTY_SHA1SUM = $(shell $(PYTHON) -m src.pynauty nauty-checksum)
-NAUTY_URL = $(shell $(PYTHON) -m src.pynauty nauty-url)
-NAUTY_DIR = $(shell $(PYTHON) -m src.pynauty nauty-dir)
+SOURCE_DIR = src
+PYNAUTY_VERSION = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty pynauty-version)
+NAUTY_VERSION = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-version)
+NAUTY_TARFILE = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-tarfile)
+NAUTY_SHA1SUM = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-checksum)
+NAUTY_URL = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-url)
+NAUTY_DIR = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-dir)
 
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
 python_version_major := $(word 1,${python_version_full})
@@ -116,26 +117,23 @@ GTOOLS = copyg listg labelg dretog amtog geng complg shortg showg NRswitchg \
   multig planarg gentourng ranlabg runalltests subdivideg watercluster2 \
   linegraphg naucompare
 
-.PHONY: fetch-nauty
 fetch-nauty:
-	cd src/; make fetch-nauty
+	cd $(SOURCE_DIR); make $@
 
-nauty-config: $(NAUTY_DIR)/config.log
-$(NAUTY_DIR)/config.log: fetch-nauty
-	cd $(NAUTY_DIR); ./configure CFLAGS='-O4 -fPIC'
+nauty-config:
+	cd $(SOURCE_DIR); make $@
 
-nauty-objects: nauty-config
-	cd $(NAUTY_DIR); make nauty.o nautil.o naugraph.o schreier.o naurng.o
+nauty-objects:
+	cd $(SOURCE_DIR); make $@
 
-nauty-programs: nauty-config
-	cd $(NAUTY_DIR); make
+nauty-programs:
+	cd $(SOURCE_DIR); make $@
 
 clean-nauty:
-	cd $(NAUTY_DIR); rm -f *.o dreadnaut ${GTOOLS} nauty.a nauty1.a
-	cd $(NAUTY_DIR); rm -f makefile config.log config.status gtools.h naututil.h nauty.h
+	cd $(SOURCE_DIR); make $@
 
 remove-nauty:
-	cd src/; make clean
+	cd $(SOURCE_DIR); make $@
 
 clobber: clean remove-nauty clean-docs
 
