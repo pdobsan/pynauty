@@ -23,12 +23,13 @@ help:
 	@echo Available targets:
 	@echo
 	@echo '  pynauty        - build the pynauty extension module'
-	@echo '  tests          - run all tests'
-	@echo '  clean          - remove all python related temp files and dirs'
-	@echo '  virtenv-create - create virtualenv:' $(VENV_DIR)
-	@echo '  virtenv-ins    - install pynauty into the active virtualenv'
-	@echo '  virtenv-unins  - uninstall pynauty from the active virtualenv'
-	@echo '  virtenv-delete - delete virtualenv:' $(VENV_DIR)
+	@echo '  tests          - run all tests loading from build/'
+	@echo '  clean          - remove all files created by build/packaging except' $(VENV_DIR)/
+	@echo '  virtenv-create - create virtualenv' $(VENV_DIR)/
+	@echo '  virtenv-ins    - install pynauty into active virtualenv' $(VENV_DIR)/
+	@echo '  virtenv-tests  - run all tests loading from' $(VENV_DIR)/
+	@echo '  virtenv-unins  - uninstall pynauty from active virtualenv' $(VENV_DIR)/
+	@echo '  virtenv-delete - delete virtualenv:' $(VENV_DIR)/
 	@echo '  user-ins       - install pynauty into ~/.local/'
 	@echo '  user-unins     - uninstall pynauty from ~/.local/'
 	@echo '  dist           - create a source distribution'
@@ -38,7 +39,7 @@ help:
 	@echo '  nauty-objects  - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
 	@echo '  clean-nauty    - a "distclean" for nauty'
 	@echo '  remove-nauty   - remove all nauty related files'
-	@echo '  clobber        - clean + remove-nauty + clean-docs'
+	@echo '  clobber        - clean + remove-nauty + clean-docs + virtenv-delete'
 	@echo
 	@echo 'Pynauty version:' ${PYNAUTY_VERSION}
 	@echo 'Nauty version:  ' ${NAUTY_VERSION}
@@ -58,12 +59,12 @@ tests: pynauty
 .PHONY: virtenv-create
 virtenv-create:
 	$(PYTHON) -m venv $(VENV_DIR) #--system-site-packages
-	@echo Created virtualenv: $(VENV_DIR)
+	@echo Created virtualenv: $(VENV_DIR)/
 	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
 
 virtenv-delete:
 	rm -fr $(VENV_DIR)
-	@echo Deleted virtualenv: $(VENV_DIR)
+	@echo Deleted virtualenv: $(VENV_DIR)/
 	@echo If it is still active, deactivate it!
 
 virtenv-ins: pynauty
@@ -72,6 +73,16 @@ ifdef VIRTUAL_ENV
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot install, aborting ...
+	@exit 1
+endif
+
+virtenv-tests:
+ifdef VIRTUAL_ENV
+	cd tests; $(PYTHON) test_autgrp.py
+	cd tests; $(PYTHON) test_isomorphic.py
+else
+	@echo ERROR: no VIRTUAL_ENV environment varaible found.
+	@echo cannot run tests, aborting ...
 	@exit 1
 endif
 
@@ -101,13 +112,15 @@ docs:
 clean-docs:
 	cd docs; make clean
 
-clean: virtenv-delete
+clean:
 	rm -fr build
 	rm -fr dist
 	rm -f MANIFEST
 	rm -fr tests/{__pycache__,data_graphs.pyc}
 	rm -fr .pytest_cache/
 	rm -fr pynauty.egg-info
+
+clobber: clean remove-nauty clean-docs virtenv-delete
 
 # nauty targets
 
@@ -128,6 +141,4 @@ clean-nauty:
 
 remove-nauty:
 	cd $(SOURCE_DIR); make $@
-
-clobber: clean remove-nauty clean-docs
 
