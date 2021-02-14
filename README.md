@@ -34,14 +34,6 @@ To build and test the package:
   make tests
 ```
 
-To install the `pynauty` package in `~/.local` (home install) and then
-to generate the documentation:
-
-```bash
-  make user-ins
-  make docs
-```
-
 It is also possible to install into a virtual environment. 
 
 ```bash
@@ -51,7 +43,17 @@ It is also possible to install into a virtual environment.
   To activate it type: source ./.venv-pynauty/bin/activate
   % source .venv-pynauty/bin/activate
   (.venv-pynauty) % make virtenv-ins
+  (.venv-pynauty) % make virtenv-tests
   ...
+```
+
+Install the `pynauty` package in `~/.local` (home install) then generate
+the documentation. Building the documentation from source requires the
+Sphinx package.
+
+```bash
+  make user-ins
+  make docs
 ```
 
 Invoking `make` without arguments will list many more targets.
