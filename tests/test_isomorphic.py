@@ -1,15 +1,15 @@
 #!/usr/bin/env python
-from __future__ import print_function, absolute_import
 
 import sys
 import copy
-from pynauty import isomorphic, delete_random_edge
+from pynauty import isomorphic, delete_random_edge, Version
 from data_graphs import graphs
 
 
 if __name__ == '__main__':
-    print('Testing pynauty.{isomorphic(),certificate()}')
+    print(Version())
     print('Python version: ' + sys.version)
+    print('Testing pynauty.{isomorphic(),certificate()}')
     print('Starting ...')
     passed = 0
     failed = 0

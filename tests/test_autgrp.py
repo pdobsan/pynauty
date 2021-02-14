@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-from __future__ import print_function
 
 import sys
-from pynauty import autgrp
+from pynauty import autgrp, Version
 
 # List of graphs for testing
 #
@@ -16,8 +15,9 @@ from data_graphs import graphs
 
 
 if __name__ == '__main__':
-    print('Testing pynauty.autgrp()')
+    print(Version())
     print('Python version: ' + sys.version)
+    print('Testing pynauty.autgrp()')
     print('Starting ...')
     passed = 0
     failed = 0
