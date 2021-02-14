@@ -95,7 +95,8 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-Pynauty is distributed under the terms GPL v3 WITHOUT ANY WARRANTY.
+Pynauty is distributed under the terms of GPL v3 WITHOUT ANY WARRANTY.
 For exact details on licensing see the file COPYING.
 
-_Copyright (c) 2015-2021 Peter Dobsan_
+Please note, Nauty is covered by its own licensing terms. For details,
+see [Nauty's web-site](https://pallini.di.uniroma1.it/).
