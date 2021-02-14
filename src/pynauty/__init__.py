@@ -35,7 +35,7 @@ _nauty_tarfile   = _nauty_version + '.tar.gz'
 _nauty_checksum  = _nauty_tarfile + '.sha1sum'
 _nauty_url       = 'https://cs.anu.edu.au/people/Brendan.McKay/nauty/' + _nauty_tarfile
 _nauty_url       = 'https://pallini.di.uniroma1.it/' + _nauty_tarfile
-_nauty_dir       = 'src/' + _nauty_version
+_nauty_dir       = _nauty_version   # relative to src/
 
 _pynauty_version = '1.0b1'
 __version__      = _pynauty_version + '+' + _nauty_version
