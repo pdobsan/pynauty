@@ -1,3 +1,22 @@
+Changes in the upcoming version 1.0b1+nauty27r1
+
+  - Pynauty works with Python 3.6-3.9 and nauty27r1.
+
+  - So far the module was successfully built on various Linux platforms
+    (x86_64, aarch64 (ARM)) and macOS (Big Sur). Windows is coming ...
+
+  - All version and related meta information are derived from a single
+    source embedded into the module.  The version of any given
+    release/build reflects both pynauty's and nauty's version on which
+    is based.
+
+    In the spirit of *Scientific Reproducibility* this combined version
+    is also accessible to the users from their program invoking
+    pynauty.Version()
+
+  - The tests can be run with either loading from build/ or from an
+    active virtualenv.
+
 Changes in version 0.7
 
   - Pynauty works with Python 3.5-3.9 and nauty27r1
