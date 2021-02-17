@@ -171,7 +171,7 @@ Testing two graphs for isomorphism:
 	 ],
 	)
 
-	In [9]: b = deepcopy(a)
+	In [9]: b = a.copy()
 
 	In [10]: delete_random_edge(b)
 	Out[10]: (9, 3)
