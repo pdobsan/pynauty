@@ -53,12 +53,12 @@ pynauty: nauty-objects
 
 .PHONY: tests
 tests: pynauty
-	cd tests; PYTHONPATH="./../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
-	cd tests; PYTHONPATH=".:../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
+	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
+	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
 
 .PHONY: virtenv-create
 virtenv-create:
-	$(PYTHON) -m venv $(VENV_DIR) #--system-site-packages
+	$(PYTHON) -m venv $(VENV_DIR) --system-site-packages
 	@echo Created virtualenv: $(VENV_DIR)/
 	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
 
@@ -102,11 +102,11 @@ user-unins:
 	$(PIP) uninstall pynauty
 
 .PHONY: dist
-dist: docs
+dist: pynauty tests docs
 	$(PYTHON) setup.py sdist
 
 .PHONY: docs
-docs:
+docs: pynauty
 	cd docs; make html
 
 clean-docs:
