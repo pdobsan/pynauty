@@ -26,6 +26,7 @@ __all__ = [
 ]
 
 from . import nautywrap
+import copy
 import random
 
 
@@ -135,6 +136,12 @@ class Graph(object):
                 self._vertex_coloring.append(vs)
             if len(self._vertex_coloring) == 1:
                 self._vertex_coloring = []
+
+    def copy(self):
+        '''
+        Make a copy of the Graph.
+        '''
+        return copy.deepcopy(self)
 
     def __repr__(self):
         s = ['Graph(number_of_vertices=%d, directed=%s,' %
