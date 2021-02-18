@@ -1,6 +1,6 @@
 pynauty  --  isomorphism testing and automorphism groups of graphs
 
-Copyright (c) 2015 Peter Dobsan
+Copyright (c) 2015-2021 Peter Dobsan
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -14,3 +14,6 @@ General Public License for more details.
 
 You should have received a copy of the GNU General Public License along
 with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Please note, Nauty is covered by its own licensing terms. For details,
+see [Nauty's web-site](https://pallini.di.uniroma1.it/).

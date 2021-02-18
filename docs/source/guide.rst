@@ -54,6 +54,7 @@ Functions
 .. autofunction:: isomorphic
 .. autofunction:: certificate
 .. autofunction:: delete_random_edge
+.. autofunction:: Version
 
 
 Examples
@@ -118,6 +119,13 @@ Let's add a new edge and see how the automorphism group would change::
     ([[0, 1, 3, 2, 4], [1, 0, 2, 3, 4]], 4.0, 0, [0, 0, 2, 2, 4], 3)
     >>>
 
+In the spirit of *Scientific Reproducibility* we might want to record
+what version of the package produced the result:
+
+    >>> print('Computed by', Version())
+    Computed by Pynauty version 1.0b1+nauty27r1
+    >>> 
+
 Fixing vertex 3 by coloring reduces the automorphism group::
 
     >>> g.set_vertex_coloring([set([3])])
@@ -163,7 +171,7 @@ Testing two graphs for isomorphism:
 	 ],
 	)
 
-	In [9]: b = deepcopy(a)
+	In [9]: b = a.copy()
 
 	In [10]: delete_random_edge(b)
 	Out[10]: (9, 3)

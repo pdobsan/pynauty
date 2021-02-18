@@ -2,14 +2,15 @@ Introduction
 ============
 
 **pynauty** is a Python/C extension module.  It can be used to compare
-graphs for isomorphism and to determine their automorphism group.
+graphs for isomorphism and to determine their automorphism group
+in a Python programming environment.
 
 **pynauty** is using library components from the Nauty_ package by
 Brendan McKay.
 
-The current version is 0.7.0
+**Current version**: |version|
 
-**pynauty**  is compatible with Python 3.5 - 3.9
+**pynauty**  is compatible with Python 3.6 - 3.9
 
 
 Licence

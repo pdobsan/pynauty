@@ -20,7 +20,9 @@ dist/
 installed-files.log
 MANIFEST
 # virtualenv
-.venv/
+.venv*/
+# pytest
+.pytest_cache/
 
 # Sphinx, docutils
 _build/
