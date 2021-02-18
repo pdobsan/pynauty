@@ -23,13 +23,16 @@ help:
 	@echo Available targets:
 	@echo
 	@echo '  pynauty        - build the pynauty extension module'
-	@echo '  tests          - run all tests loading from build/'
+ifdef VIRTUAL_ENV
+	@echo '  tests          - run all tests loading from' $(VIRTUAL_ENV)
+else
+	@echo '  tests          - run all tests loading either from build/ or from an active virtualenv'
+endif
 	@echo '  clean          - remove all files created by build/packaging except' $(VENV_DIR)/
 	@echo '  virtenv-create - create virtualenv' $(VENV_DIR)/
-	@echo '  virtenv-ins    - install pynauty into active virtualenv' $(VENV_DIR)/
-	@echo '  virtenv-tests  - run all tests loading from' $(VENV_DIR)/
-	@echo '  virtenv-unins  - uninstall pynauty from active virtualenv' $(VENV_DIR)/
-	@echo '  virtenv-delete - delete virtualenv:' $(VENV_DIR)/
+	@echo '  virtenv-ins    - install pynauty into the active virtualenv' $(VIRTUAL_ENV)
+	@echo '  virtenv-unins  - uninstall pynauty from the active virtualenv' $(VIRTUAL_ENV)
+	@echo '  virtenv-delete - delete virtualenv' $(VENV_DIR)/
 	@echo '  user-ins       - install pynauty into ~/.local/'
 	@echo '  user-unins     - uninstall pynauty from ~/.local/'
 	@echo '  dist           - create a source distribution'
@@ -53,8 +56,14 @@ pynauty: nauty-objects
 
 .PHONY: tests
 tests: pynauty
+ifdef VIRTUAL_ENV
+tests: virtenv-ins
+	cd tests; $(PYTHON) test_autgrp.py
+	cd tests; $(PYTHON) test_isomorphic.py
+else
 	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
 	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
+endif
 
 .PHONY: virtenv-create
 virtenv-create:
@@ -73,16 +82,6 @@ ifdef VIRTUAL_ENV
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot install, aborting ...
-	@exit 1
-endif
-
-virtenv-tests:
-ifdef VIRTUAL_ENV
-	cd tests; $(PYTHON) test_autgrp.py
-	cd tests; $(PYTHON) test_isomorphic.py
-else
-	@echo ERROR: no VIRTUAL_ENV environment varaible found.
-	@echo cannot run tests, aborting ...
 	@exit 1
 endif
 
