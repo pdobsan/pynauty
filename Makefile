@@ -1,5 +1,6 @@
 PYTHON = python3
 PIP = $(PYTHON) -m pip
+PYTEST = pytest
 
 SOURCE_DIR = src
 PYNAUTY_VERSION = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty pynauty-version)
@@ -53,8 +54,7 @@ pynauty: nauty-objects
 
 .PHONY: tests
 tests: pynauty
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
+	PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTEST) 
 
 .PHONY: virtenv-create
 virtenv-create:
