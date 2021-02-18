@@ -89,8 +89,7 @@ python3 -m venv .venv-pynauty
 Created virtualenv: .venv-pynauty
 To activate it type: source ./.venv-pynauty/bin/activate
 % source .venv-pynauty/bin/activate
-(.venv-pynauty) % make virtenv-ins
-(.venv-pynauty) % make virtenv-tests
+(.venv-pynauty) % make install
 ...
 ```
 
@@ -99,22 +98,25 @@ the creation step above and activate your own virtualenv.
 
 ```bash
 % source /.../my-virtenv/bin/activate
-(my-virtenv) % make virtenv-ins
-(my-virtenv) % make virtenv-tests
+(my-virtenv) % make install
+(my-virtenv) % make install
 ...
 ```
 
-It is also possible to install the package in `~/.local` (home install) then
-generate the documentation. Building the documentation from source requires the
-Sphinx package.
+If `make install` is invoked outside of a virtualenv that will install
+`pynauty` in `~/.local` (home install).
+
+Building the documentation from source requires the Sphinx package.
 
 ```bash
-make user-ins
 make docs
 ```
 
-Invoking `make` without arguments will list many more targets most of
-them you unlikely need to use directly.
+The Makefile is self-documenting in the sense that invoking `make`
+without arguments will list all available targets with short
+explanations. Please note, this *help* slightly changes depending
+whether the invocation was made inside or outside of a virtualenv.
+
 
 ## Documentation
 
