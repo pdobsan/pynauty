@@ -66,7 +66,6 @@ setup( name = MODULE, version = pynauty.__version__,
        packages = packages,
        scripts = scripts,
        data_files = data_files,
-       tests_require=["pytest"],
        ext_modules = ext_modules,
        classifiers = classifiers,
      )

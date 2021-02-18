@@ -1,6 +1,5 @@
 PYTHON = python3
 PIP = $(PYTHON) -m pip
-PYTEST = pytest
 
 SOURCE_DIR = src
 PYNAUTY_VERSION = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty pynauty-version)
@@ -9,6 +8,7 @@ NAUTY_TARFILE = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-tarfile)
 NAUTY_SHA1SUM = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-checksum)
 NAUTY_URL = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-url)
 NAUTY_DIR = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-dir)
+INSTALL_PYTEST = $(shell $(PYTHON) -c "import pytest" 2> /dev/null; echo $$?)
 
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
 python_version_major := $(word 1,${python_version_full})
@@ -54,11 +54,17 @@ pynauty: nauty-objects
 
 .PHONY: tests
 tests: pynauty
-	PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTEST) 
+ifeq ($(INSTALL_PYTEST),1)
+	$(PIP) install pytest 
+endif
+	PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest
+	@echo foo
+	
+	
 
 .PHONY: virtenv-create
 virtenv-create:
-	$(PYTHON) -m venv $(VENV_DIR) --system-site-packages
+	$(PYTHON) -m venv $(VENV_DIR) 
 	@echo Created virtualenv: $(VENV_DIR)/
 	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
 
@@ -78,8 +84,10 @@ endif
 
 virtenv-tests:
 ifdef VIRTUAL_ENV
-	cd tests; $(PYTHON) test_autgrp.py
-	cd tests; $(PYTHON) test_isomorphic.py
+ifeq ($(INSTALL_PYTEST),1)
+	$(PIP) install pytest 
+endif
+	$(PYTHON) -m pytest
 else
 	@echo ERROR: no VIRTUAL_ENV environment varaible found.
 	@echo cannot run tests, aborting ...
