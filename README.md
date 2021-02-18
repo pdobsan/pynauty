@@ -99,7 +99,6 @@ the creation step above and activate your own virtualenv.
 ```bash
 % source /.../my-virtenv/bin/activate
 (my-virtenv) % make install
-(my-virtenv) % make install
 ...
 ```
 
