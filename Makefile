@@ -63,11 +63,9 @@ pynauty: nauty-objects
 tests: pynauty
 ifdef VIRTUAL_ENV
 tests: install
-	cd tests; $(PYTHON) test_autgrp.py
-	cd tests; $(PYTHON) test_isomorphic.py
+	$(PYTHON) -m pytest 
 else
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_autgrp.py
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
+	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest
 endif
 
 minimal-test: pynauty
