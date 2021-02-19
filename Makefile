@@ -8,6 +8,7 @@ NAUTY_TARFILE = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-tarfile)
 NAUTY_SHA1SUM = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-checksum)
 NAUTY_URL = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-url)
 NAUTY_DIR = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-dir)
+PYTEST_NOT_INSTALLED = $(shell $(PYTHON) -c "import pytest" 2> /dev/null; echo $$?)
 
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
 python_version_major := $(word 1,${python_version_full})
@@ -62,11 +63,18 @@ pynauty: nauty-objects
 
 .PHONY: tests
 tests: pynauty
+ifeq ($(PYTEST_NOT_INSTALLED),1)
+	@echo
+	@echo 'Tests require the pytest module, which seems not to be installed.'
+	@echo 'You can install it e.g. by running: '
+	@echo 'pip3 install pytest'
+else
 ifdef VIRTUAL_ENV
 tests: install
-	$(PYTHON) -m pytest 
+	$(PYTHON) -m pytest
 else
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest
+endif
 endif
 
 install: pynauty
