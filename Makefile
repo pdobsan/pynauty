@@ -105,7 +105,7 @@ clean:
 	rm -fr pynauty.egg-info
 
 virtenv-create:
-	$(PYTHON) -m venv $(VENV_DIR) --system-site-packages
+	$(PYTHON) -m venv $(VENV_DIR)
 	@echo Created virtualenv: $(VENV_DIR)/
 	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
 
