@@ -19,6 +19,8 @@ LIBPATH = build/lib.linux-$(machine)-${python_version_major}.${python_version_mi
 
 VENV_DIR = .venv-pynauty
 
+export
+
 help:
 	@echo Available targets:
 	@echo
