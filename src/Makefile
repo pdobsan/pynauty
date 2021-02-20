@@ -1,13 +1,4 @@
-
-PYTHON = python3
-PIP = $(PYTHON) -m pip
-
-PYNAUTY_VERSION = $(shell $(PYTHON) -m pynauty pynauty-version)
-NAUTY_VERSION = $(shell $(PYTHON) -m pynauty nauty-version)
-NAUTY_TARFILE = $(shell $(PYTHON) -m pynauty nauty-tarfile)
-NAUTY_SHA1SUM = $(shell $(PYTHON) -m pynauty nauty-checksum)
-NAUTY_URL = $(shell $(PYTHON) -m pynauty nauty-url)
-NAUTY_DIR = $(shell $(PYTHON) -m pynauty nauty-dir)
+# Sub-Makefile to deal with Nauty related stuff
 
 OSTYPE = $(shell uname)
 ifeq ($(OSTYPE), Linux)

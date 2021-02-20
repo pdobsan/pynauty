@@ -21,6 +21,8 @@ MODULE_TEST = $(PWD)/src/module-test.py
 
 VENV_DIR = .venv-pynauty
 
+export
+
 help:
 	@echo Available targets:
 	@echo
