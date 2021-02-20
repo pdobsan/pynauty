@@ -17,6 +17,8 @@ platform := "$(shell uname -a)"
 machine := $(shell uname -m)
 LIBPATH = build/lib.linux-$(machine)-${python_version_major}.${python_version_minor}
 
+MODULE_TEST = $(PWD)/src/module-test.py
+
 VENV_DIR = .venv-pynauty
 
 help:
