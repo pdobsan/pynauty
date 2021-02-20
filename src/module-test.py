@@ -17,6 +17,7 @@ except ImportError:
     print('The following paths were searched:')
     for x in sys.path:
         print(' ', x)
+    print()
     if len(sys.argv) > 2:
         print(sys.argv[2])
     else:
