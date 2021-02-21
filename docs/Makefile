@@ -13,6 +13,10 @@ help:
 	@$(MODULE_TEST) sphinx "In order to build the docmentation you need to have the Sphinx package installed".
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+# pynauty's own clean to avoid unnecessary call to MODULE_TEST
+clean:
+	rm -fr $(BUILDDIR)
+
 .PHONY: help Makefile
 
 # Catch-all target: route all unknown targets to Sphinx using the new
