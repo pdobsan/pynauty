@@ -17,6 +17,8 @@ platform := "$(shell uname -a)"
 machine := $(shell uname -m)
 LIBPATH = build/lib.linux-$(machine)-${python_version_major}.${python_version_minor}
 
+MODULE_TEST = $(PWD)/src/module-test.py
+
 VENV_DIR = .venv-pynauty
 
 export
@@ -103,7 +105,7 @@ clean:
 	rm -fr pynauty.egg-info
 
 virtenv-create:
-	$(PYTHON) -m venv $(VENV_DIR) --system-site-packages
+	$(PYTHON) -m venv $(VENV_DIR)
 	@echo Created virtualenv: $(VENV_DIR)/
 	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
 
