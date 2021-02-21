@@ -74,10 +74,9 @@ and change into the `pynauty/` directory created by the cloning.
 Nauty's source code is not distributed with `pynauty`, however it is
 automatically downloaded during the building process. 
 
-To build and test the package:
+To build and test the package first without installing it anywhere just type:
 
 ```bash
-make pynauty
 make tests
 ```
 
