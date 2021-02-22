@@ -59,9 +59,20 @@ Graph(number_of_vertices=5, directed=False,
 
 - Python 3.6 - 3.9
 - An ANSI C compiler 
-- The most recent version of Nauty, currently `nauty27r1`.
+
+### Installing from PyPi
+
+The release version of the package will soon be available from PyPi.
+When that has happened, to install `pynauty` just type:
+
+```bash
+pip install pynauty
+```
 
 ### Building from source
+
+Please note, Nauty's source code version 27r1 is distributed with
+`pynauty`.
 
 Clone this repository:
 
@@ -70,9 +81,6 @@ git clone https://github.com/pdobsan/pynauty
 ```
 
 and change into the `pynauty/` directory created by the cloning.
-
-Nauty's source code is not distributed with `pynauty`, however it is
-automatically downloaded during the building process. 
 
 To build and test the package first without installing it anywhere just type:
 
@@ -123,15 +131,18 @@ directory after building as above.
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+Questions, bug reports, pull requests are welcome. Please, open an issue
+first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Pull requests must be made on a dedicated `topic-branch` of your choice
+and not against `upstream/main`.  Before submitting a pull request, make
+sure that your fork is up to date with upstream. Also update tests,
+documentation, examples as appropriate with the changes in your PR. 
 
 ## License
 
 Pynauty is distributed under the terms of GPL v3 WITHOUT ANY WARRANTY.
-For exact details on licensing see the file COPYING.
+For the exact details on licensing see the file `COPYING`.
 
-Please note, Nauty is covered by its own licensing terms. For details,
-see [Nauty's web-site](https://pallini.di.uniroma1.it/).
+Please note, Nauty is covered by its own licensing terms. For the exact
+details see the file `src/nauty27r1/COPYRIGHT`.
