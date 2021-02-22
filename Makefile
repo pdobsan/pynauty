@@ -77,6 +77,8 @@ endif
 
 install: pynauty
 ifdef VIRTUAL_ENV
+	$(PIP) install --upgrade pip
+	$(PIP) install --upgrade build
 	$(PIP) install --upgrade .
 else
 	$(PIP) install --user --upgrade .
@@ -91,6 +93,10 @@ docs: pynauty
 
 .PHONY: dist
 dist: pynauty tests docs
+ifdef VIRTUAL_ENV
+	$(PIP) install --upgrade pip
+	$(PIP) install --upgrade build
+endif
 	$(PYTHON) setup.py sdist
 
 clean-docs:
