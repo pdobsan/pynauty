@@ -4,9 +4,6 @@ PIP = $(PYTHON) -m pip
 SOURCE_DIR = src
 PYNAUTY_VERSION = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty pynauty-version)
 NAUTY_VERSION = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-version)
-NAUTY_TARFILE = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-tarfile)
-NAUTY_SHA1SUM = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-checksum)
-NAUTY_URL = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-url)
 NAUTY_DIR = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty nauty-dir)
 
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) --version 2>&1)))
@@ -48,15 +45,12 @@ endif
 	@echo '  clean-docs     - remove pyanauty documentation'
 	@echo '  virtenv-create - create virtualenv' $(VENV_DIR)/
 	@echo '  virtenv-delete - delete virtualenv' $(VENV_DIR)/
-	@echo '  fetch-nauty    - download Nauty source files'
 	@echo '  nauty-objects  - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
 	@echo '  clean-nauty    - a "distclean" for nauty'
-	@echo '  remove-nauty   - remove all nauty related files'
-	@echo '  clobber        - clean + remove-nauty + clean-docs + virtenv-delete'
+	@echo '  clobber        - clean + clean-nauty + clean-docs + virtenv-delete'
 	@echo
 	@echo 'Pynauty version:' ${PYNAUTY_VERSION}
 	@echo 'Nauty version:  ' ${NAUTY_VERSION}
-	@echo 'Nauty source:   ' ${NAUTY_URL}
 	@echo 'Python version: ' ${python_version_full}
 	@echo 'Pip used:       ' ${PIP}
 	@echo 'Platform:       ' ${platform}
@@ -120,12 +114,9 @@ virtenv-delete:
 	@echo Deleted virtualenv: $(VENV_DIR)/
 	@echo If it is still active, deactivate it!
 
-clobber: clean remove-nauty clean-docs virtenv-delete
+clobber: clean clean-nauty clean-docs virtenv-delete
 
 # nauty targets
-
-fetch-nauty:
-	cd $(SOURCE_DIR); make $@
 
 nauty-config:
 	cd $(SOURCE_DIR); make $@
@@ -138,7 +129,3 @@ nauty-programs:
 
 clean-nauty:
 	cd $(SOURCE_DIR); make $@
-
-remove-nauty:
-	cd $(SOURCE_DIR); make $@
-
