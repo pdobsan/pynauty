@@ -6,3 +6,4 @@ include src/Makefile
 recursive-include docs/build *
 recursive-include tests *
 global-exclude __pycache__/* *.pyc
+global-exclude *.a *.o

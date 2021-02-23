@@ -33,14 +33,15 @@ GNU General Public License for more details.
 _nauty_version   = 'nauty27r1'
 _nauty_dir       = _nauty_version   # relative to src/
 
-_pynauty_version = '1.0b1'
-__version__      = _pynauty_version + '+' + _nauty_version
+_pynauty_version = '1.0b2'
+__version__      = _pynauty_version
+__Version__      = _pynauty_version + '+' + _nauty_version
 
 def Version():
     '''
     Return the combined version of the pynauty package.
     '''
-    return('Pynauty version ' + __version__)
+    return('Pynauty version ' + __Version__)
 
 try:
     from .graph import *
