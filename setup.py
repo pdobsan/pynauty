@@ -57,8 +57,12 @@ package_data = {
         }
 
 setup( name = MODULE, version = pynauty.__version__,
-       description = description, long_description = long_description,
-       author = author, author_email = author_email, url = url,
+       description = description,
+       long_description_content_type = long_description_content_type,
+       long_description = long_description,
+       author = author,
+       author_email = author_email,
+       url = url,
        platforms = platforms,
        license = license,
        package_dir = package_dir,
