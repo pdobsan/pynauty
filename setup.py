@@ -1,16 +1,16 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 from src import pynauty
+from glob import glob
 
-MODULE          = 'pynauty'
+MODULE = 'pynauty'
 
-description     = 'Automorphism and isomorphism of graphs'
-long_description = '''
-Package for testing isomorphism of graphs
-and computing their automorphism group.
-'''
+description      = 'Isomorphism testing and automorphisms of graphs.'
+long_description_content_type='text/markdown'
+with open('README.md') as f: long_description = f.read()
+
 author          = 'Peter Dobsan'
 author_email    = 'pdobsan@gmail.com'
 url             = 'https://github.com/pdobsan/pynauty'
@@ -21,27 +21,22 @@ classifiers     = [
     'Operating System :: POSIX :: Linux',
     'Operating System :: Unix',
     'Programming Language :: Python',
-    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
     'Programming Language :: C',
     'Topic :: Scientific/Engineering',
     'Topic :: Scientific/Engineering :: Mathematics',
-    'Topic :: Scientific/Engineering :: Computing Science',
     'Intended Audience :: Science/Research',
     'Intended Audience :: Education',
     'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
 ]
 
-pynauty_dir = 'src/pynauty'
-package_dir     = { MODULE : pynauty_dir}
-packages        = [ MODULE ]
-scripts         = []
-data_files      = []
-
-nauty_dir       = 'src/' + pynauty._nauty_dir
-if not os.access(nauty_dir, os.R_OK | os.X_OK):
-    print("Can't find nauty_dir: %s" % nauty_dir)
-    raise SystemExit(1)
+nauty_dir   = 'src/' + pynauty._nauty_dir
+pynauty_dir = 'src/' + MODULE
+package_dir = { MODULE : pynauty_dir}
+packages    = [ MODULE ]
 
 ext_pynauty = Extension(
         name = MODULE + '.nautywrap',
@@ -57,6 +52,10 @@ ext_pynauty = Extension(
     )
 ext_modules = [ ext_pynauty ]
 
+package_data = {
+        MODULE : [f for f in glob('docs/build/*/**/**',  recursive=True) if os.path.isfile(f)],
+        }
+
 setup( name = MODULE, version = pynauty.__version__,
        description = description, long_description = long_description,
        author = author, author_email = author_email, url = url,
@@ -64,10 +63,8 @@ setup( name = MODULE, version = pynauty.__version__,
        license = license,
        package_dir = package_dir,
        packages = packages,
-       scripts = scripts,
-       data_files = data_files,
        ext_modules = ext_modules,
+       include_package_data = True,
+       #packege_data = package_data,
        classifiers = classifiers,
      )
-
-# vim: expandtab:

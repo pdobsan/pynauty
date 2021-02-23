@@ -1,5 +1,6 @@
 PYTHON = python3
 PIP = $(PYTHON) -m pip
+TWINE = $(PYTHON) -m twine
 
 SOURCE_DIR = src
 PYNAUTY_VERSION = $(shell $(PYTHON) -m $(SOURCE_DIR).pynauty pynauty-version)
@@ -69,10 +70,22 @@ else
 	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
 endif
 
-install: pynauty
+update-packaging-helpers:
 ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade pip
+	$(PIP) install --upgrade setuptools
+	$(PIP) install --upgrade setuptools_scm
+	$(PIP) install --upgrade setuptools_git
+	$(PIP) install --upgrade wheel
 	$(PIP) install --upgrade build
+	$(PIP) install --upgrade twine
+	$(PIP) install --upgrade auditwheel
+else
+	@echo using globally installed packaging helpers
+endif
+
+install: pynauty docs
+ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade .
 else
 	$(PIP) install --user --upgrade .
@@ -83,15 +96,19 @@ uninstall:
 
 .PHONY: docs
 docs: pynauty
+ifdef VIRTUAL_ENV
+	$(PIP) install --upgrade sphinx
+endif
 	cd docs; make html
 
 .PHONY: dist
 dist: pynauty tests docs
-ifdef VIRTUAL_ENV
-	$(PIP) install --upgrade pip
-	$(PIP) install --upgrade build
-endif
 	$(PYTHON) setup.py sdist
+	$(PYTHON) setup.py bdist_wheel
+	# $(PYTHON) -m build
+
+upload: dist
+	$(TWINE) upload --repository testpypi dist/*
 
 clean-docs:
 	cd docs; make clean
