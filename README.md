@@ -69,17 +69,17 @@ If that fails, probably because of binary incompatibility, then download
 the source distribution.
 
 ```bash
-pip download pynauty
+pip download --no-binary :all: pynauty
 ```
 
 See the next section how to build from sources.
 
 ### Building from sources
 
-You can download the sources either from [PyPi](https://pypi.org) or
+You can download the sources either from
+[PyPi](https://pypi.org/project/pynauty/) or from
 [Pynauty's Home Page](https://github.com/pdobsan/pynauty).
-Please note, Nauty's source code version 27r1 is distributed with
-`pynauty`.
+Please note, Nauty's source code version 27r1 is distributed with `pynauty`.
 
 To build and test the package first without installing it anywhere just type:
 
