@@ -5,7 +5,6 @@ their automorphism group in a Python programming environment.  Pynauty
 is a Python/C extension module using library components from the
 [Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay.
 
-**Current version** under development: 1.0b1+nauty27r1
 
 ## Usage
 
@@ -62,25 +61,25 @@ Graph(number_of_vertices=5, directed=False,
 
 ### Installing from PyPi
 
-The release version of the package will soon be available from PyPi.
-When that has happened, to install `pynauty` just type:
-
 ```bash
 pip install pynauty
 ```
 
-### Building from source
-
-Please note, Nauty's source code version 27r1 is distributed with
-`pynauty`.
-
-Clone this repository:
+If that fails, probably because of binary incompatibility, then download
+the source distribution.
 
 ```bash
-git clone https://github.com/pdobsan/pynauty
+pip download pynauty
 ```
 
-and change into the `pynauty/` directory created by the cloning.
+See the next section how to build from sources.
+
+### Building from sources
+
+You can download the sources either from [PyPi](https://pypi.org) or
+[Pynauty's Home Page](https://github.com/pdobsan/pynauty).
+Please note, Nauty's source code version 27r1 is distributed with
+`pynauty`.
 
 To build and test the package first without installing it anywhere just type:
 
