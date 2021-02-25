@@ -70,6 +70,14 @@ else
 	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) test_isomorphic.py
 endif
 
+minimal-test: pynauty
+ifdef VIRTUAL_ENV
+minimal-test: install
+	cd tests; $(PYTHON) minimal-test.py
+else
+	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) minimal-test.py
+endif
+
 update-packaging-helpers:
 ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade pip
@@ -84,7 +92,7 @@ else
 	@echo using globally installed packaging helpers
 endif
 
-install: pynauty docs
+install: pynauty # docs
 ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade .
 else
@@ -102,10 +110,13 @@ endif
 	cd docs; make html
 
 .PHONY: dist
-dist: pynauty tests docs
-	$(PYTHON) setup.py sdist
-	$(PYTHON) setup.py bdist_wheel
-	# $(PYTHON) -m build
+dist: pynauty minimal-test docs
+	#$(PYTHON) setup.py sdist
+	#$(PYTHON) setup.py bdist_wheel
+	$(PYTHON) -m build
+	@cd dist/ ; ../src/fix-wheel-tag.sh
+	@echo Packages created:
+	@ls -l dist/
 
 upload: dist
 	$(TWINE) upload --repository testpypi dist/*
