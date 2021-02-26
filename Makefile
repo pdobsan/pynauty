@@ -63,8 +63,10 @@ pynauty: nauty-objects
 tests: pynauty
 ifdef VIRTUAL_ENV
 tests: install
+	$(PYTHON) $(MODULE_TEST) pytest
 	$(PYTHON) -m pytest 
 else
+	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) $(MODULE_TEST) pytest
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest
 endif
 
