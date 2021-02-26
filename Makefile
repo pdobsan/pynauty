@@ -111,6 +111,7 @@ endif
 
 .PHONY: dist
 dist: pynauty minimal-test docs
+	make clean-nauty
 	#$(PYTHON) setup.py sdist
 	#$(PYTHON) setup.py bdist_wheel
 	$(PYTHON) -m build
