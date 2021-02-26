@@ -71,9 +71,9 @@ endif
 minimal-test: pynauty
 ifdef VIRTUAL_ENV
 minimal-test: install
-	cd tests; $(PYTHON) minimal-test.py
+	$(PYTHON) tests/test_minimal.py
 else
-	cd tests; PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) minimal-test.py
+	PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) tests/test_minimal.py
 endif
 
 update-packaging-helpers:
