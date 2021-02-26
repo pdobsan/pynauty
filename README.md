@@ -56,7 +56,7 @@ Graph(number_of_vertices=5, directed=False,
 
 ### Requirements
 
-- Python 3.6 - 3.9
+- Python 3.7 - 3.9
 - An ANSI C compiler 
 
 ### Installing from PyPi
