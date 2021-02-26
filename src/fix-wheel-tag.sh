@@ -2,8 +2,14 @@
 
 # Ref.: https://github.com/pypa/manylinux
 #
-echo Fixing wheel tag ...
-echo Warning: this works only on Archlinux or derivatives
+if type pacman >/dev/null
+then
+  echo Fixing wheel tag ...
+  echo Warning: this works only on Archlinux or derivatives
+else
+  echo Fixing wheel tag ignored.
+  exit 0
+fi
 
 TAG=manylinux2010
 TAG=manylinux2014
