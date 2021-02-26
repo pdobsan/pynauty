@@ -15,7 +15,9 @@ Changes in version 1.0 + nauty27r1
     of Pynauty and Nauty is accessible to the users from their program
     invoking pynauty.Version()
 
-  - A new copy() method was addded to the Graph object.
+  - A new copy() method was added to the Graph object.
+
+  - All tests were integrated into the 'pytest' framework.
 
 Changes in version 0.7
 
