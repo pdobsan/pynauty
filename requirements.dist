@@ -1,0 +1,10 @@
+pip
+setuptools
+# setuptools_scm
+# setuptools_git
+pytest
+sphinx
+wheel
+build
+twine
+auditwheel

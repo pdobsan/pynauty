@@ -6,9 +6,9 @@ packages-help:
 	@echo Available targets for publishing pynauty packages:
 	@echo
 	@echo '  packages       - create source and binary distribution packages'
-	@echo '  tools          - install/upgrade modules needed for packaging into a virtual env'
+	@echo '  tools          - install/upgrade modules needed for packaging'
 	@echo '  testupload     - upload packages to https://test.pypi.org'
-	@echo '  tupload        - upload packages to https://pypi.org'
+	@echo '  upload         - upload packages to https://pypi.org'
 	@echo
 	@echo 'Virtualenv: $(VIRTUAL_ENV)'
 	@echo
@@ -20,21 +20,13 @@ $(error ERROR: not in a virtaulenv! bailing out ...)
 endif
 
 tools:
-	$(PIP) install --upgrade pip
-	$(PIP) install --upgrade setuptools
-	$(PIP) install --upgrade setuptools_scm
-	$(PIP) install --upgrade setuptools_git
-	$(PIP) install --upgrade wheel
-	$(PIP) install --upgrade build
-	$(PIP) install --upgrade twine
-	$(PIP) install --upgrade auditwheel
-	$(PIP) install --upgrade sphinx
+	$(PIP) install --upgrade --requirement requirements.dist
 
-packages: pynauty minimal-test docs
+packages: pynauty tests docs
 	$(MAKE) clean-nauty
-	#$(PYTHON) setup.py sdist
-	#$(PYTHON) setup.py bdist_wheel
-	$(PYTHON) -m build
+	$(PYTHON) setup.py sdist
+	$(PYTHON) setup.py bdist_wheel
+	#$(PYTHON) -m build
 	@cd dist/ ; ../src/fix-wheel-tag.sh
 	@echo Packages created:
 	@ls -l dist/
