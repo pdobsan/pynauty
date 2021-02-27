@@ -1,0 +1,59 @@
+# Makefile to create sdist and wheel packages
+
+packages-help:
+	$(MAKE)
+	@echo
+	@echo Available targets for publishing pynauty packages:
+	@echo
+	@echo '  packages       - create source and binary distribution packages'
+	@echo '  tools          - install/upgrade modules needed for packaging into a virtual env'
+	@echo '  testupload     - upload packages to https://test.pypi.org'
+	@echo '  tupload        - upload packages to https://pypi.org'
+	@echo
+	@echo 'Virtualenv: $(VIRTUAL_ENV)'
+	@echo
+
+include Makefile.common
+
+ifndef VIRTUAL_ENV
+$(error ERROR: not in a virtaulenv! bailing out ...)
+endif
+
+tools:
+	$(PIP) install --upgrade pip
+	$(PIP) install --upgrade setuptools
+	$(PIP) install --upgrade setuptools_scm
+	$(PIP) install --upgrade setuptools_git
+	$(PIP) install --upgrade wheel
+	$(PIP) install --upgrade build
+	$(PIP) install --upgrade twine
+	$(PIP) install --upgrade auditwheel
+	$(PIP) install --upgrade sphinx
+
+packages: pynauty minimal-test docs
+	$(MAKE) clean-nauty
+	#$(PYTHON) setup.py sdist
+	#$(PYTHON) setup.py bdist_wheel
+	$(PYTHON) -m build
+	@cd dist/ ; ../src/fix-wheel-tag.sh
+	@echo Packages created:
+	@ls -l dist/
+
+testupload: packages
+	$(TWINE) upload --repository testpypi dist/*
+
+upload: packages
+	$(TWINE) upload dist/*
+
+.PHONY: tests
+tests:
+	$(MAKE) $@
+
+.PHONY: docs
+docs:
+	$(MAKE) $@
+
+%:
+	$(MAKE) $@
+
+# vim: filetype=make syntax=make

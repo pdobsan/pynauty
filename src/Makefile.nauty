@@ -28,3 +28,5 @@ GTOOLS = copyg listg labelg dretog amtog geng complg shortg showg NRswitchg \
 clean-nauty:
 	cd $(NAUTY_DIR); rm -f *.o dreadnaut ${GTOOLS} nauty.a nauty1.a
 	cd $(NAUTY_DIR); rm -f makefile config.log config.status gtools.h naututil.h nauty.h
+
+# vim: filetype=make syntax=make

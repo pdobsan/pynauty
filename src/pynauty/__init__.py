@@ -33,7 +33,7 @@ GNU General Public License for more details.
 _nauty_version   = 'nauty27r1'
 _nauty_dir       = _nauty_version   # relative to src/
 
-_pynauty_version = '1.0rc1'
+_pynauty_version = '1.0rc2'
 __version__      = _pynauty_version
 __Version__      = _pynauty_version + ' + ' + _nauty_version
 
