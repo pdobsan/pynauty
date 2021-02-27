@@ -4,7 +4,8 @@ include Makefile.common
 recursive-include src/nauty27r1 *
 include src/pynauty/nautywrap.h
 include src/Makefile.nauty
-recursive-include docs/build *
+include src/module-test.py
+recursive-include docs *
 recursive-include tests *
 global-exclude __pycache__/* *.pyc
 global-exclude *.a *.o
