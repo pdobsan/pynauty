@@ -7,38 +7,13 @@ pynauty: nauty-objects
 
 .PHONY: tests
 tests: pynauty
-ifdef VIRTUAL_ENV
-tests: install
-	$(PYTHON) $(MODULE_TEST) pytest
-	$(PYTHON) -m pytest 
-else
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) $(MODULE_TEST) pytest
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest
-endif
 
 minimal-test: pynauty
-ifdef VIRTUAL_ENV
-minimal-test: install
-	$(PYTHON) tests/test_minimal.py
-else
-	PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) tests/test_minimal.py
-endif
+	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) tests/test_minimal.py
 
-update-packaging-helpers:
-ifdef VIRTUAL_ENV
-	$(PIP) install --upgrade pip
-	$(PIP) install --upgrade setuptools
-	$(PIP) install --upgrade setuptools_scm
-	$(PIP) install --upgrade setuptools_git
-	$(PIP) install --upgrade wheel
-	$(PIP) install --upgrade build
-	$(PIP) install --upgrade twine
-	$(PIP) install --upgrade auditwheel
-else
-	@echo using globally installed packaging helpers
-endif
-
-install: pynauty # docs
+install: tests
 ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade .
 else
@@ -49,24 +24,9 @@ uninstall:
 	$(PIP) uninstall pynauty
 
 .PHONY: docs
-docs: pynauty
-ifdef VIRTUAL_ENV
-	$(PIP) install --upgrade sphinx
-endif
+docs: install
+	$(PYTHON) $(MODULE_TEST) sphinx
 	$(MAKE) -C docs html
-
-.PHONY: dist
-dist: pynauty minimal-test docs
-	$(MAKE) clean-nauty
-	#$(PYTHON) setup.py sdist
-	#$(PYTHON) setup.py bdist_wheel
-	$(PYTHON) -m build
-	@cd dist/ ; ../src/fix-wheel-tag.sh
-	@echo Packages created:
-	@ls -l dist/
-
-upload: dist
-	$(TWINE) upload --repository testpypi dist/*
 
 clean-docs:
 	$(MAKE) -C docs clean
