@@ -24,21 +24,7 @@ else
 	PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) tests/test_minimal.py
 endif
 
-update-packaging-helpers:
-ifdef VIRTUAL_ENV
-	$(PIP) install --upgrade pip
-	$(PIP) install --upgrade setuptools
-	$(PIP) install --upgrade setuptools_scm
-	$(PIP) install --upgrade setuptools_git
-	$(PIP) install --upgrade wheel
-	$(PIP) install --upgrade build
-	$(PIP) install --upgrade twine
-	$(PIP) install --upgrade auditwheel
-else
-	@echo using globally installed packaging helpers
-endif
-
-install: pynauty # docs
+install: pynauty
 ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade .
 else
@@ -54,19 +40,6 @@ ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade sphinx
 endif
 	$(MAKE) -C docs html
-
-.PHONY: dist
-dist: pynauty minimal-test docs
-	$(MAKE) clean-nauty
-	#$(PYTHON) setup.py sdist
-	#$(PYTHON) setup.py bdist_wheel
-	$(PYTHON) -m build
-	@cd dist/ ; ../src/fix-wheel-tag.sh
-	@echo Packages created:
-	@ls -l dist/
-
-upload: dist
-	$(TWINE) upload --repository testpypi dist/*
 
 clean-docs:
 	$(MAKE) -C docs clean
