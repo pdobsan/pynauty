@@ -7,24 +7,13 @@ pynauty: nauty-objects
 
 .PHONY: tests
 tests: pynauty
-ifdef VIRTUAL_ENV
-tests: install
-	$(PYTHON) $(MODULE_TEST) pytest
-	$(PYTHON) -m pytest 
-else
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) $(MODULE_TEST) pytest
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest
-endif
 
 minimal-test: pynauty
-ifdef VIRTUAL_ENV
-minimal-test: install
-	$(PYTHON) tests/test_minimal.py
-else
-	PYTHONPATH="../${LIBPATH}:$(PYTHONPATH)" $(PYTHON) tests/test_minimal.py
-endif
+	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) tests/test_minimal.py
 
-install: pynauty
+install: tests
 ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade .
 else
@@ -35,10 +24,8 @@ uninstall:
 	$(PIP) uninstall pynauty
 
 .PHONY: docs
-docs: pynauty
-ifdef VIRTUAL_ENV
-	$(PIP) install --upgrade sphinx
-endif
+docs: install
+	$(PYTHON) $(MODULE_TEST) sphinx
 	$(MAKE) -C docs html
 
 clean-docs:

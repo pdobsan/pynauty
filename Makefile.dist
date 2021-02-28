@@ -31,10 +31,14 @@ packages: pynauty tests docs
 	@echo Packages created:
 	@ls -l dist/
 
-testupload: packages
+testupload:
+	@echo Packages to be uploaded:
+	@ls -l dist/
 	$(TWINE) upload --repository testpypi dist/*
 
-upload: packages
+upload:
+	@echo Packages to be uploaded:
+	@ls -l dist/
 	$(TWINE) upload dist/*
 
 .PHONY: tests
