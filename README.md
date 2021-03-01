@@ -67,19 +67,29 @@ pip install pynauty
 
 If that fails, probably because of binary incompatibility, then download
 the source distribution.
-
-```bash
-pip download --no-binary :all: pynauty
-```
-
 See the next section how to build from sources.
 
 ### Building from sources
 
 You can download the sources either from
-[PyPi](https://pypi.org/project/pynauty/) or from
+[PyPI](https://pypi.org/project/pynauty/) or from
 [Pynauty's Home Page](https://github.com/pdobsan/pynauty).
 Please note, Nauty's source code version 27r1 is distributed with `pynauty`.
+
+To dowload from PyPI [PyPI](https://pypi.org/project/pynauty/) you can do this using `pip`:
+```bash
+pip download --no-binary :all: pynauty
+```
+
+Then unpack it and change directory to build it:
+```bash
+tar -xvzf pynauty-1.0rc4.tar.gz && cd pynauty-1.0rc4 
+```
+
+Alternatively, to get it from [Pynauty's Home Page](https://github.com/pdobsan/pynauty), you can use `git`:
+```bash
+git clone https://github.com/pdobsan/pynauty.git && pynauty
+```
 
 To build and test the package first without installing it anywhere just type:
 
