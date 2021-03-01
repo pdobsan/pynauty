@@ -76,7 +76,7 @@ You can download the sources either from
 [Pynauty's Home Page](https://github.com/pdobsan/pynauty).
 Please note, Nauty's source code version 27r1 is distributed with `pynauty`.
 
-To dowload from PyPI [PyPI](https://pypi.org/project/pynauty/) you can do this using `pip`:
+To dowload from [PyPI](https://pypi.org/project/pynauty/) you can do this using `pip`:
 ```bash
 pip download --no-binary :all: pynauty
 ```
