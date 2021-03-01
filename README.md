@@ -79,9 +79,11 @@ See the next section how to build from sources.
 ### Building from sources
 
 You can download the sources either from
-[PyPi](https://pypi.org/project/pynauty/) or from
-[Pynauty's Home Page](https://github.com/pdobsan/pynauty).
-Please note, Nauty's source code version 27r1 is distributed with `pynauty`.
+[PyPi](https://pypi.org/project/pynauty/) or from the
+[Releases section](https://github.com/pdobsan/pynauty/releases)
+of [Pynauty's Home Page](https://github.com/pdobsan/pynauty).
+
+Please note, Nauty's source code `version 27r1` is distributed with `pynauty`.
 
 To build and test the package first without installing it anywhere just type:
 
