@@ -36,6 +36,10 @@ jobs:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
-        ls -l dist/
+        cd dist
+        ls -l
+        auditwheel show "*.whl"
+        auditwheel repair "*.whl"
+        ls -l
         echo "make -f Makefile.dist testupload"
 
