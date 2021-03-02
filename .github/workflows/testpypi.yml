@@ -31,5 +31,5 @@ jobs:
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.TESTPYPI_PASSWORD }}
-      run: make testupload
+      run: make -f Makefile.dist testupload
 
