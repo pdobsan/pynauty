@@ -63,18 +63,24 @@ Graph(number_of_vertices=5, directed=False,
 
 ### Installing from PyPi
 
+Make sure that you are using the most recent versions of `pip` and
+`wheel` then just install `pynauty`.
+
 ```bash
+pip install --upgrade pip wheel
+
 pip install pynauty
 ```
 
-If that fails, probably because of binary incompatibility, then download
-the source distribution.
+When your system is not compatible with the provided binary wheels the
+installation could fail. If that happens just ignore the long error
+message and proceed by downloading the source distribution.
 
 ```bash
-pip download --no-binary :all: pynauty
+pip download --no-binary pynauty pynauty
 ```
 
-See the next section how to build from sources.
+Note, `pynauty` is specified twice.  See the next section how to build from sources.
 
 ### Building from sources
 
