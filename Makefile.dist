@@ -15,8 +15,13 @@ packages-help:
 
 include Makefile.common
 
+ifdef GITHUB_ACTIONS
+$(info Run by Gitub actions)
+else
+$(info Run locally)
 ifndef VIRTUAL_ENV
 $(error ERROR: not in a virtaulenv! bailing out ...)
+endif
 endif
 
 tools:
@@ -24,7 +29,9 @@ tools:
 
 packages: pynauty tests docs
 	$(MAKE) clean-nauty
+ifndef GITHUB_ACTIONS
 	$(PYTHON) setup.py sdist
+endif
 	$(PYTHON) setup.py bdist_wheel
 	#$(PYTHON) -m build
 	@cd dist/ ; ../src/fix-wheel-tag.sh
