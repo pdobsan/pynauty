@@ -17,7 +17,7 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         - macos-10.15     # Catalina
-        - macos-11.0      # Big Sur
+        #- macos-11.0      # Big Sur
         
     steps:
     - uses: actions/checkout@v2
