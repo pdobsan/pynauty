@@ -38,8 +38,8 @@ jobs:
       run: |
         cd dist
         ls -l
-        auditwheel show "*.whl"
-        auditwheel repair "*.whl"
+        auditwheel show *.whl
+        auditwheel repair *.whl
         ls -l
         echo "make -f Makefile.dist testupload"
 
