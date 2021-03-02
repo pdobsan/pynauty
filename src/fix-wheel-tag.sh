@@ -2,28 +2,28 @@
 
 # Ref.: https://github.com/pypa/manylinux
 #
-if type pacman >/dev/null
+
+echo Fixing wheel tag ...
+if type pacman &> /dev/null
 then
-  echo Fixing wheel tag ...
-  echo Warning: this works only on Archlinux or derivatives
+  echo ... on Archlinux ...
+  X=$(pacman -Q glibc | cut -d ' ' -f 2 | cut -d - -f 1 | cut -d . -f 1)
+  Y=$(pacman -Q glibc | cut -d ' ' -f 2 | cut -d - -f 1 | cut -d . -f 2)
+  TAG=manylinux\_$X\_$Y
 else
-  echo Fixing wheel tag ignored.
-  exit 0
+  if [ `uname -s` = Linux ]; then
+    echo ... on Linux ...
+    TAG=manylinux2014
+  else
+    echo ... not on Linux, bailing out ...
+    exit 0
+  fi
 fi
-
-TAG=manylinux2010
-TAG=manylinux2014
-# should work on any distro based on glibc>=x.y
-# TAG=manylinux_x_y
-
-X=$(pacman -Q glibc | cut -d ' ' -f 2 | cut -d - -f 1 | cut -d . -f 1)
-Y=$(pacman -Q glibc | cut -d ' ' -f 2 | cut -d - -f 1 | cut -d . -f 2)
-TAG=manylinux\_$X\_$Y
-# echo $X $Y $TAG
 
 ORIG=$(ls pynauty-*-linux_x86_64.whl)
 NEW=$(echo $ORIG | sed -e "s/linux/$TAG/")
 
+echo $ORIG '-->' $NEW
 mv -f $ORIG $NEW
 
 echo ... done.
