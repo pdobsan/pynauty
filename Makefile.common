@@ -15,7 +15,8 @@ python_version_minor := $(word 2,${python_version_full})
 python_version_patch := $(word 3,${python_version_full})
 platform := "$(shell uname -a)"
 machine := $(shell uname -m)
-LIBPATH = build/lib.linux-$(machine)-${python_version_major}.${python_version_minor}
+opsystem := $(shell uname -s | sed -e 's/Linux/linux/' | sed -e 's/Darwin/macosx/')
+LIBPATH = build/lib.$(opsystem)-$(machine)-${python_version_major}.${python_version_minor}
 
 MODULE_TEST = $(PWD)/src/module-test.py
 
