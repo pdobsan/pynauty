@@ -5,12 +5,14 @@ import os
 
 def test_minimal():
     print()
-    print('Python system prefix:', sys.prefix)
-    print('Virtualenv:', os.environ.get('VIRTUAL_ENV'))
+    print('==> Python system prefix:', sys.prefix)
+    print('==> PYTHONPATH:', os.environ.get('PYTHONPATH'))
+    print('==> sys.path:', sys.path)
+    print('==> Virtualenv:', os.environ.get('VIRTUAL_ENV'))
     
     import pynauty
     
-    print('Pynauty module file:', pynauty.__file__)
+    print('==> Pynauty module file:', pynauty.__file__)
     print()
     
     g = pynauty.Graph(number_of_vertices=5, directed=False,
