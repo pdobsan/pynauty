@@ -36,6 +36,8 @@ jobs:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
+        cd dist/
         ls -l
-        echo "make -f Makefile.dist testupload"
+        echo "twine upload --repository testpypi *.whl"
+        echo "twine upload --repository testpypi *.tar.gz || true"
 
