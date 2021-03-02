@@ -37,6 +37,5 @@ jobs:
       run: make pynauty
     - name: Test
       run: |
-        ls -l build
         make minimal-test
         make tests
