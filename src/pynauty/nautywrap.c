@@ -12,6 +12,7 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 */
 
+#define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #include <nauty.h>
 #include <nautywrap.h>
