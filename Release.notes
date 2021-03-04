@@ -5,8 +5,10 @@ Changes in version 1.0 + nauty27r1
   - Pynauty can be installed from PyPi (pip install pynauty) or built
     from sources.
 
-  - So far the module was successfully built on various Linux platforms
-    (x86_64, aarch64 (ARM)) and macOS. Windows is coming ...
+  - The module was successfully built on various Linux platforms
+    (x86_64, aarch64 (ARM)) and macOS. Many binary wheels are provided.
+
+    Windows is coming ...
 
   - All version and related meta information are derived from a single
     source embedded into the module.
