@@ -6,7 +6,7 @@ Changes in version 1.0 + nauty27r1
     from sources.
 
   - So far the module was successfully built on various Linux platforms
-    (x86_64, aarch64 (ARM)) and macOS (Big Sur). Windows is coming ...
+    (x86_64, aarch64 (ARM)) and macOS. Windows is coming ...
 
   - All version and related meta information are derived from a single
     source embedded into the module.

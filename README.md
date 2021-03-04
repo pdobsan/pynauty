@@ -60,34 +60,47 @@ Graph(number_of_vertices=5, directed=False,
 
 - Python 3.7 - 3.9
 - An ANSI C compiler 
+- Nauty's source code, included with `pynauty`
 
 ### Installing from PyPi
 
-Make sure that you are using the most recent versions of `pip` and
-`wheel` then just install `pynauty`.
+First make sure that you are using the most recent versions of Python's
+packaging utilities, then install `pynauty` using `pip`.
 
 ```bash
-pip install --upgrade pip wheel
+pip install --upgrade pip
+pip install --upgrade setuptools wheel
 
 pip install pynauty
 ```
 
-When your system is not compatible with the provided binary wheels the
-installation could fail. If that happens just ignore the long error
-message and proceed by downloading the source distribution.
+Many binary wheels are provided for reasonable recent Linux and macOS
+systems. So in most cases you can expect a quick installation.  When
+your system is not compatible with the provided binary wheels `pip`
+attempts to build the wheel of the extension module on your local
+machine.
+
+You can also force the local build by issuing
+
+```bash
+pip install --no-binary pynauty pynauty
+```
+
+If all these fail or you prefer to build from sources, see the next
+section below.
+
+### Building from sources
+
+You can download the sources from
+[PyPi](https://pypi.org/project/pynauty/)
 
 ```bash
 pip download --no-binary pynauty pynauty
 ```
 
-Note, `pynauty` is specified twice.  See the next section how to build from sources.
-
-### Building from sources
-
-You can download the sources either from
-[PyPi](https://pypi.org/project/pynauty/) or from the
-[Releases section](https://github.com/pdobsan/pynauty/releases)
-of [Pynauty's Home Page](https://github.com/pdobsan/pynauty).
+or from the [Releases
+section](https://github.com/pdobsan/pynauty/releases) of
+[Pynauty's Home Page](https://github.com/pdobsan/pynauty).
 
 Please note, Nauty's source code `version 27r1` is distributed with `pynauty`.
 

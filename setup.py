@@ -2,8 +2,8 @@
 
 import os
 from setuptools import setup, Extension
+from setuptools.command.build_ext import build_ext as _build_ext
 from src import pynauty
-from glob import glob
 
 MODULE = 'pynauty'
 
@@ -51,9 +51,11 @@ ext_pynauty = Extension(
     )
 ext_modules = [ ext_pynauty ]
 
-package_data = {
-        MODULE : [f for f in glob('docs/build/*/**/**',  recursive=True) if os.path.isfile(f)],
-        }
+class build_ext(_build_ext):
+    def run(self):
+        if not self.dry_run:
+            self.spawn(['make', 'nauty-objects'])
+        _build_ext.run(self)
 
 setup( name = MODULE, version = pynauty.__version__,
        description = description,
@@ -67,7 +69,6 @@ setup( name = MODULE, version = pynauty.__version__,
        package_dir = package_dir,
        packages = packages,
        ext_modules = ext_modules,
-       include_package_data = True,
-       #packege_data = package_data,
+       cmdclass = {'build_ext': build_ext},
        classifiers = classifiers,
      )

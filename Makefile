@@ -2,7 +2,7 @@
 
 include Makefile.common
 
-pynauty: nauty-objects
+pynauty:
 	$(PYTHON) setup.py build
 
 .PHONY: tests
