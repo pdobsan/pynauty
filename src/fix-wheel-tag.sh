@@ -20,7 +20,7 @@ else
   fi
 fi
 
-ORIG=$(ls pynauty-*-linux_x86_64.whl)
+ORIG=$(ls pynauty-*-linux_*.whl)
 NEW=$(echo $ORIG | sed -e "s/linux/$TAG/")
 
 echo $ORIG '-->' $NEW
