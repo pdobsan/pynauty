@@ -56,12 +56,6 @@ Graph(number_of_vertices=5, directed=False,
 
 ## Installation
 
-### Requirements
-
-- Python 3.7 - 3.9
-- An ANSI C compiler 
-- Nauty's source code, included with `pynauty`
-
 ### Installing from PyPi
 
 First make sure that you are using the most recent versions of Python's
@@ -71,7 +65,7 @@ packaging utilities, then install `pynauty` using `pip`.
 pip install --upgrade pip
 pip install --upgrade setuptools wheel
 
-pip install pynauty
+pip install --upgrade pynauty
 ```
 
 Many binary wheels are provided for reasonable recent Linux and macOS
@@ -90,6 +84,15 @@ If all these fail or you prefer to build from sources, see the next
 section below.
 
 ### Building from sources
+
+#### Requirements
+
+Apart from Python the requirements are the same as for building Nauty.
+
+- Python 3.7 - 3.9
+- An ANSI C compiler 
+- GNU autoconf
+- GNU make
 
 You can download the sources from
 [PyPi](https://pypi.org/project/pynauty/)
