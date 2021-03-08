@@ -36,6 +36,23 @@ nauty_dir   = 'src/' + pynauty._nauty_dir
 pynauty_dir = 'src/' + MODULE
 package_dir = { MODULE : pynauty_dir}
 packages    = [ MODULE ]
+package_data = {
+        MODULE : [
+            'docs/*',
+            'docs/doctrees/*',
+            'docs/html/*',
+            'docs/html/.buildinfo',
+            'docs/html/_modules/*',
+            'docs/html/_modules/pynauty/*',
+            'docs/html/_sources/*',
+            'docs/html/_static/*',
+        ],
+        MODULE : [
+            'tests/*',
+        ],
+    }
+
+data_files = []
 
 ext_pynauty = Extension(
         name = MODULE + '.nautywrap',
@@ -68,6 +85,9 @@ setup( name = MODULE, version = pynauty.__version__,
        license = license,
        package_dir = package_dir,
        packages = packages,
+       package_data = package_data,
+       include_package_data=True,
+       data_files = data_files,
        ext_modules = ext_modules,
        cmdclass = {'build_ext': build_ext},
        classifiers = classifiers,

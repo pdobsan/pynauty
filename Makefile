@@ -8,10 +8,10 @@ pynauty:
 .PHONY: tests
 tests: pynauty
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) $(MODULE_TEST) pytest
-	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest
+	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) -m pytest src/pynauty/tests
 
 minimal-test: pynauty
-	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) tests/test_minimal.py
+	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) src/pynauty/tests/test_minimal.py
 
 install: tests
 ifdef VIRTUAL_ENV

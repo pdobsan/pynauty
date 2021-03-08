@@ -25,7 +25,7 @@ MANIFEST
 .pytest_cache/
 
 # Sphinx, docutils
-_build/
+src/pynauty/docs
 README.html
 
 # tar, backup, archive files
