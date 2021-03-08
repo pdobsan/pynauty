@@ -56,34 +56,37 @@ Graph(number_of_vertices=5, directed=False,
 
 ## Installation
 
-### Installing from PyPi
+### Installing from [PyPi](https://pypi.org/project/pynauty/)
 
-First make sure that you are using the most recent versions of Python's
-packaging utilities, then install `pynauty` using `pip`.
+You can install `pynauty` using `pip`, just type
 
 ```bash
-pip install --upgrade pip
-pip install --upgrade setuptools wheel
-
 pip install --upgrade pynauty
 ```
 
-Many binary wheels are provided for reasonable recent Linux and macOS
-systems. So in most cases you can expect a quick installation.  When
-your system is not compatible with the provided binary wheels `pip`
-attempts to build the wheel of the extension module on your local
-machine.
+Many binary wheels are provided for recent Linux and macOS systems.
 
-You can also force the local build by issuing
+OS/Platform | py3.7 | py3.8 | py3.9 
+------------|:-----:|:-----:|:-----:
+Ubuntu-20.04/Debian <br/> and derivatives <br/> x86_64 | X | X | X
+Archlinux/Manjaro <br/> x86_64 |  |  | X
+macOS 10 <br/> x86_64 | X | X | X
+macOS 11 <br/> x86_64 |  |  | X
+
+When your system is not compatible with any of the provided binary
+wheels `pip` attempts to build the wheel of the extension module on your
+local machine. It assumes that the required tools are installed.
+
+## Documentation
+
+The `pynauty` package comes with an HTML documentation, API and User's Guide.
+You can read it with your favorite browser:
 
 ```bash
-pip install --no-binary pynauty pynauty
+<your-browser>  <path-to-installed-package>/pynauty/docs/html/index.html
 ```
 
-If all these fail or you prefer to build from sources, see the next
-section below.
-
-### Building from sources
+### Building manually from sources
 
 #### Requirements
 
@@ -94,18 +97,18 @@ Apart from Python the requirements are the same as for building Nauty.
 - GNU autoconf
 - GNU make
 
-You can download the sources from
-[PyPi](https://pypi.org/project/pynauty/)
+#### Download sources
+
+You can download the source distribution form
+[PyPi](https://pypi.org/project/pynauty/) by issuing:
 
 ```bash
 pip download --no-binary pynauty pynauty
 ```
 
-or from the [Releases
-section](https://github.com/pdobsan/pynauty/releases) of
-[Pynauty's Home Page](https://github.com/pdobsan/pynauty).
+Please note, the source distribution also contains Nauty27r1's source.
 
-Please note, Nauty's source code `version 27r1` is distributed with `pynauty`.
+#### Build, test, install
 
 To build and test the package first without installing it anywhere just type:
 
@@ -137,22 +140,9 @@ the creation step above and activate your own virtualenv.
 If `make install` is invoked outside of a virtualenv that will install
 `pynauty` in `~/.local` (home install).
 
-Building the documentation from source requires the Sphinx package.
-
-```bash
-make docs
-```
-
 The Makefile is self-documenting in the sense that invoking `make`
 without arguments will list all available targets with short
-explanations. Please note, this *help* slightly changes depending
-whether the invocation was made inside or outside of a virtualenv.
-
-
-## Documentation
-
-For detailed documentation, API and User's Guide see the `docs/`
-directory after building as above.
+explanations.
 
 ## Contributing
 
