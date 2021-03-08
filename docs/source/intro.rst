@@ -10,7 +10,7 @@ Brendan McKay.
 
 **Current version**: |version|
 
-**pynauty**  is compatible with Python 3.6 - 3.9
+**pynauty**  is compatible with Python 3.7-3.9 and nauty27r1.
 
 
 Licence

@@ -123,7 +123,7 @@ In the spirit of *Scientific Reproducibility* we might want to record
 what version of the package produced the result:
 
     >>> print('Computed by', Version())
-    Computed by Pynauty version 1.0b1+nauty27r1
+    Computed by Pynauty version 1.0.0 + nauty27r1
     >>> 
 
 Fixing vertex 3 by coloring reduces the automorphism group::
