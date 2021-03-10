@@ -6,8 +6,11 @@
 echo Fixing wheel tag ...
 if [ `uname -s` = Linux ]; then
   echo ... on Linux ...
-  X=$(ldd --version | head -1 | cut -d ' ' -f 4 | cut -d . -f 1)
-  Y=$(ldd --version | head -1 | cut -d ' ' -f 4 | cut -d . -f 2)
+  # $ ldd --version
+  # on ubuntu: ldd (Ubuntu GLIBC 2.31-0ubuntu9.2) 2.31
+  # on archlinux: ldd (GNU libc) 2.33
+  X=$(ldd --version | head -1 | cut -d ')' -f 2 | sed -e 's/ *//' | cut -d '.' -f 1)
+  Y=$(ldd --version | head -1 | cut -d ')' -f 2 | sed -e 's/ *//' | cut -d '.' -f 2)
   TAG=manylinux\_$X\_$Y
 else
   echo ... not on Linux, bailing out ...
