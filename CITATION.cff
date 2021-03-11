@@ -1,0 +1,19 @@
+# YAML 1.2
+---
+abstract: "The Pynauty Python/C extension module can be used to compare graphs for isomorphism and to determine their automorphism group in a Python programming environment."
+authors: 
+  -
+    family-names: Dobsan
+    given-names: Peter
+cff-version: "1.1.0"
+date-released: 2021-03-11
+keywords: 
+  - "Graph Theory"
+  - "Group Theory"
+  - "Scientific Computing"
+license: "GNU General Public License version 3 or any later version"
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/pdobsan/pynauty"
+title: Pynauty
+version: "1.0.x"
+...

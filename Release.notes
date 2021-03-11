@@ -1,4 +1,16 @@
-Changes in version 1.0 + nauty27r1
+Changes in version 1.0.1 + nauty27r1
+
+  - All binary wheels for Linux are published  in
+    `..manylinux_X_Y_m.whl` format where `X.Y` is the `glibc` version
+    number and `m` is the hardware platform.
+
+  - Automatic compilation if necessary due to glibc binary
+    incompatibility happens on all Linux systems, including docker
+    images of such.
+
+  - Added citation information. 
+
+Changes in version 1.0.0 + nauty27r1
 
   - Pynauty works with Python 3.7-3.9 and nauty27r1.
 

@@ -65,21 +65,39 @@ pip install --upgrade pynauty
 ```
 
 Many binary wheels are provided for recent Linux and macOS systems.
-
-OS/Platform | py3.7 | py3.8 | py3.9 
-------------|:-----:|:-----:|:-----:
-Ubuntu-20.04/Debian <br/> and derivatives <br/> x86_64 | X | X | X
-Archlinux/Manjaro <br/> x86_64 |  |  | X
-macOS 10 <br/> x86_64 | X | X | X
-macOS 11 <br/> x86_64 |  |  | X
-
 When your system is not compatible with any of the provided binary
-wheels `pip` attempts to build the wheel of the extension module on your
-local machine. It assumes that the required tools are installed.
+wheels `pip` attempts to build the wheel of the extension module in your
+local system. This happens automatically and the process is transparent
+to the user.  For local builds `pip` expects that the [required
+tools](#requirements) are available.
+
+You can force the local (re)compilation during install by issuing
+
+```bash
+pip install --no-binary pynauty pynauty
+```
+
+Regardless of which way the installation was accomplished, afterwards
+you can test the result by running the provided tests.
+
+```bash
+python <path-to-installed-package>/pynauty/tests/test_minimal.py
+```
+
+If you have `pytest` installed then you can run the full test suit by
+issuing
+
+```bash
+pip install pytest
+python -m pytest <path-to-installed-package>/pynauty
+```
+
+That takes a few seconds but then you can be sure in having a binary
+compatible module.
 
 ## Documentation
 
-The `pynauty` package comes with an HTML documentation, API and User's Guide.
+The `pynauty` package comes with an HTML documentation with examples.
 You can read it with your favorite browser:
 
 ```bash
@@ -94,7 +112,6 @@ Apart from Python the requirements are the same as for building Nauty.
 
 - Python 3.7 - 3.9
 - An ANSI C compiler 
-- GNU autoconf
 - GNU make
 
 #### Download sources
@@ -110,44 +127,17 @@ Please note, the source distribution also contains Nauty27r1's source.
 
 #### Build, test, install
 
-To build and test the package first without installing it anywhere just type:
-
-```bash
-make tests
-```
-
-Here is how to create a virtualenv and install `pynauty` into it.
-
-```bash
-% make virtenv-create
-python3 -m venv .venv-pynauty
-Created virtualenv: .venv-pynauty
-To activate it type: source ./.venv-pynauty/bin/activate
-% source .venv-pynauty/bin/activate
-(.venv-pynauty) % make install
-...
-```
-
-You can install `pynauty` into an already existing virtualenv just skip
-the creation step above and activate your own virtualenv.
-
-```bash
-% source /.../my-virtenv/bin/activate
-(my-virtenv) % make install
-...
-```
-
-If `make install` is invoked outside of a virtualenv that will install
-`pynauty` in `~/.local` (home install).
-
-The Makefile is self-documenting in the sense that invoking `make`
-without arguments will list all available targets with short
-explanations.
+If you really are interested in the low level details then unpack the
+downloaded source distribution, change into `pynauty`'s directory and
+type `make`.  The Makefile is self-documenting in the sense that
+invoking `make` without arguments will list all available targets with
+short explanations.
 
 ## Contributing
 
-Questions, bug reports, pull requests are welcome. Please, open an issue
-first to discuss what you would like to change.
+Questions, bug reports, pull requests, especially the ones extending the
+Python module's functionality, are welcome. Please, open an issue first
+to discuss what you would like to change.
 
 Pull requests must be made on a dedicated `topic-branch` of your choice
 and not against `upstream/main`.  Before submitting a pull request, make
