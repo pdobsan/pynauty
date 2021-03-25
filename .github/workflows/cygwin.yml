@@ -1,0 +1,16 @@
+name: Build in Cygwin
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: cygwin setup
+      - uses: egor-tensin/setup-cygwin@v3
+      with:
+        packages: python3
+      - name: install dependencies
+        run: |
+          python3 -m pip --version
+          python3 -m pip -U pip
+        shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
