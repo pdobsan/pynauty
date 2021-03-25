@@ -6,9 +6,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: cygwin setup
-      - uses: egor-tensin/setup-cygwin@v3
-      with:
-        packages: python3
+        uses: egor-tensin/setup-cygwin@v3
+        with:
+          packages: python3
       - name: install dependencies
         run: |
           python3 -m pip --version
