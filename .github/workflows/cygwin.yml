@@ -6,10 +6,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: cygwin setup
-        uses: egor-tensin/setup-cygwin@v3
+      - uses: actions/checkout@v2
+      - uses: egor-tensin/setup-cygwin@v3
         with:
           packages: python3
-          install-dir: ./
       - name: install dependencies
         run: |
           python3 -m pip --version
