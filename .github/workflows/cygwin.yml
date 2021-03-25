@@ -5,9 +5,10 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: cygwin setup
-      - uses: actions/checkout@v2
-      - uses: egor-tensin/setup-cygwin@v3
+        uses: egor-tensin/setup-cygwin@v3
         with:
           packages: python3
       - name: install dependencies
