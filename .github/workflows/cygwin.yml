@@ -10,9 +10,10 @@ jobs:
       - name: cygwin setup
         uses: egor-tensin/setup-cygwin@v3
         with:
-          packages: python3
+          packages: python3,make,gcc
       - name: install dependencies
         run: |
-          python3 -m pip --version
-          python3 -m pip -U pip
+          python3 -m pip install -U pip
+          make --version
+          gcc --version
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
