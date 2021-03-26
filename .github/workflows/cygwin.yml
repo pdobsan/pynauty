@@ -14,6 +14,9 @@ jobs:
       - name: install dependencies
         run: |
           python3 -m pip install -U pip
-          make --version
-          gcc --version
+          python3 -m pip install -U wheel
+      - name: install pynauty
+        run: |
+          python3 -m pip install -U pynauty
+          python3 -c 'import pynauty; print(pynauty.__file__)'
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
