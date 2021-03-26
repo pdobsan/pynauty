@@ -11,12 +11,11 @@ jobs:
         uses: egor-tensin/setup-cygwin@v3
         with:
           packages: python3,make,gcc
-      - name: install dependencies
+      - name: build & test
         run: |
           python3 -m pip install -U pip
-          python3 -m pip install -U wheel
-      - name: install pynauty
-        run: |
-          python3 -m pip install -U pynauty
-          python3 -c 'import pynauty; print(pynauty.__file__)'
+          pip --version
+          python3 -m pip install -U pytest
+          make pynauty
+          make minimal-test
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
