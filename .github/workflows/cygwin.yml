@@ -16,6 +16,10 @@ jobs:
           python3 -m pip install -U pip
           pip --version
           python3 -m pip install -U pytest
+          gcc --version
+          make --version
+          ls -alF
+          make
           make pynauty
           make minimal-test
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
