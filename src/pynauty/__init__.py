@@ -12,10 +12,11 @@ Classes:
 
 Functions:
 
-    autgrp      - Compute the automorphism group of a graph.
-    isomorphic  - Compare two graphs for isomorphism.
-    certificate - Compute a "certificate" based on the canonical labeling
-                  of the graph's vertices.
+    autgrp        - Compute the automorphism group of a graph.
+    isomorphic    - Compare two graphs for isomorphism.
+    certificate   - Compute a "certificate" based on the canonical labeling
+                    of the graph's vertices.
+    canon_relabel - Computes the canonical relabelling of a graph.
 '''
 
 __LICENSE__     = '''
