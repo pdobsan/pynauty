@@ -53,6 +53,7 @@ Functions
 .. autofunction:: autgrp
 .. autofunction:: isomorphic
 .. autofunction:: certificate
+.. autofunction:: canon_label
 .. autofunction:: delete_random_edge
 .. autofunction:: Version
 
