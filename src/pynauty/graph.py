@@ -5,7 +5,7 @@ Module graph contains the definition of the Graph class
 and utilities dealing with graph objects.
 '''
 
-__LICENSE__     = '''
+__LICENSE__ = '''
 Copyright (c) 2015-2021 Peter Dobsan
 
 This program is free software; you can redistribute it and/or modify it
@@ -22,6 +22,7 @@ __all__ = [
     'autgrp',
     'isomorphic',
     'certificate',
+    'canon_label',
     'delete_random_edge',
 ]
 
@@ -67,8 +68,8 @@ class Graph(object):
         for v in vs:
             if not (0 <= v and v < self.number_of_vertices):
                 raise ValueError(
-                'vertex %d conflicts with number_of_vertices=%d' %
-                                 (v, self.number_of_vertices))
+                    'vertex %d conflicts with number_of_vertices=%d' %
+                    (v, self.number_of_vertices))
 
     def _get_adjacency_dict(self):
         return self._adjacency_dict
@@ -147,9 +148,9 @@ class Graph(object):
         s = ['Graph(number_of_vertices=%d, directed=%s,' %
              (self.number_of_vertices, self.directed)]
         s.append(' adjacency_dict = {')
-        for k,v in self._adjacency_dict.items():
+        for k, v in self._adjacency_dict.items():
             v.sort()
-            s.append('  %d: %s,' % (k,v))
+            s.append('  %d: %s,' % (k, v))
         s.append(' },')
         s.append(' vertex_coloring = [')
         for x in self._vertex_coloring:
@@ -190,6 +191,21 @@ def certificate(g):
     return nautywrap.graph_cert(g)
 
 
+def canon_label(g):
+    '''
+    Finds the canonical labeling of vertices.
+
+    *g*
+        A Graph object.
+
+    return ->
+        A list with each node relabelled.
+    '''
+    if not isinstance(g, Graph):
+        raise TypeError
+    return nautywrap.graph_canonlab(g)
+
+
 def isomorphic(a, b):
     '''
     Determine if two graphs are isomorphic.
@@ -220,7 +236,7 @@ def delete_random_edge(g):
     '''
     if g.adjacency_dict:
         # pick a random vertex 'x' which is connected
-        x = random.sample(list(g.adjacency_dict),1)[0]
+        x = random.sample(list(g.adjacency_dict), 1)[0]
         # remove a random edge connected to 'x'
         xs = g.adjacency_dict[x]
         y = xs.pop(random.randrange(len(xs)))

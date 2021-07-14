@@ -16,6 +16,7 @@ Functions:
     isomorphic  - Compare two graphs for isomorphism.
     certificate - Compute a "certificate" based on the canonical labeling
                   of the graph's vertices.
+    canon_label - Computes the canonical relabelling of a graph.
 '''
 
 __LICENSE__     = '''

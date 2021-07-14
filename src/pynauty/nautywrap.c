@@ -104,7 +104,7 @@ void destroy_nygraph(NyGraph *g)
 NyGraph * create_nygraph(int no_vertices)
 //
 // Allocate a data structure to hold all data structures used by Nauty
-// 
+//
 {
     NyGraph *g;
     int i, *p;
@@ -128,7 +128,7 @@ NyGraph * create_nygraph(int no_vertices)
     g->no_setwords = (no_vertices + WORDSIZE - 1) / WORDSIZE;
     nauty_check(WORDSIZE, g->no_setwords, g->no_vertices, NAUTYVERSIONID);
 
-    if ((g->matrix = malloc((size_t) g->no_setwords * 
+    if ((g->matrix = malloc((size_t) g->no_setwords *
                     (size_t) (no_vertices * sizeof(setword)))) == NULL) {
         destroy_nygraph(g);
         return NULL;
@@ -547,11 +547,54 @@ graph_cert(PyObject *self, PyObject *args)
     return pyret;
 }
 
+static char graph_canonlab_docs[] =
+"graph_canonlab(g): \n\
+    Return the canonical relabelling of NyGraph 'g'.\n";
+
+static PyObject*
+graph_canonlab(PyObject *self, PyObject *args)
+{
+    int i;
+    PyObject *py_graph;
+    NyGraph * g;
+    PyObject *pyret;
+
+    if (!PyArg_ParseTuple(args, "O", &py_graph)) {
+        PyErr_SetString(PyExc_TypeError, "Missing argument.");
+        return NULL;
+    }
+    g = _make_nygraph(py_graph);
+    if (g == NULL) return NULL;
+
+    // produce graph certificate by computing canonical labeling
+    g->options->getcanon = TRUE;
+    if (extend_canonical(g) == NULL) {
+        PyErr_SetString(PyExc_MemoryError,
+                "Allocating canonical matrix failed");
+        return NULL;
+    }
+    // the produced generators are ignored
+    g->options->userautomproc = NULL;
+
+    // *** nauty ***
+    nauty(g->matrix, g->lab, g->ptn, NULL, g->orbits,
+            g->options, g->stats,  g->workspace, g->worksize,
+            g->no_setwords, g->no_vertices, g->cmatrix);
+
+    pyret = PyList_New(g->no_vertices);
+    for (i=0; i < g->no_vertices; i++) {
+        PyList_SET_ITEM(pyret, i, Py_BuildValue("i", g->lab[i]));
+    }
+
+    destroy_nygraph(g);
+    return pyret;
+}
 
 //  Python module initialization  =============================================
 
 static PyMethodDef nautywrap_methods[] = {
     {"graph_cert", graph_cert, METH_VARARGS, graph_cert_docs},
+    {"graph_canonlab", graph_canonlab, METH_VARARGS, graph_canonlab_docs},
     {"graph_autgrp", graph_autgrp, METH_VARARGS, graph_autgrp_docs},
     {"make_nygraph", make_nygraph, METH_VARARGS, make_nygraph_docs},
     {"delete_nygraph", delete_nygraph, METH_VARARGS, delete_nygraph_docs},
