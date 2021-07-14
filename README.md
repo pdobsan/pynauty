@@ -144,6 +144,12 @@ and not against `upstream/main`.  Before submitting a pull request, make
 sure that your fork is up to date with upstream. Also update tests,
 documentation, examples as appropriate with the changes in your PR. 
 
+### Contributors
+
+  - @goens helped creating `pytest` components.
+
+  - Sam Morley-Short (@sammorley-short) added `canon_label()` function.
+
 ## License
 
 Pynauty is distributed under the terms of GPL v3 WITHOUT ANY WARRANTY.

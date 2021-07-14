@@ -1,3 +1,8 @@
+Changes in version 1.0.2 + nauty27r1
+
+  - Sam Morley-Short added a new function `canon_label(g)` to find the
+    canonical labeling of vertices.
+
 Changes in version 1.0.1 + nauty27r1
 
   - All binary wheels for Linux are published  in
