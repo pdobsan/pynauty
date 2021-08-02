@@ -79,7 +79,7 @@ static void store_generator(int count,
 
 void destroy_nygraph(NyGraph *g)
 //
-// free all the allocated memeory for NyGraph
+// free all the allocated memory for NyGraph
 //
 {
     int i;
@@ -440,7 +440,7 @@ make_nygraph(PyObject *self, PyObject *args)
 
 static char delete_nygraph_docs[] =
 "delete_nygraph(g): \n\
-    Free the allocated memeory for Nauty NyGraph.\n";
+    Free the allocated memory for Nauty NyGraph.\n";
 
 static PyObject*
 delete_nygraph(PyObject *self, PyObject *args) {
