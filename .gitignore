@@ -37,7 +37,7 @@ README.html
 # nauty
 src/nauty*/config.log
 src/nauty*/config.status
-src/nauty27r1/gtools.h
-src/nauty27r1/makefile
-src/nauty27r1/naututil.h
-src/nauty27r1/nauty.h
+src/nauty*/gtools.h
+src/nauty*/makefile
+src/nauty*/naututil.h
+src/nauty*/nauty.h

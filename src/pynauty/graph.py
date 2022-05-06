@@ -82,12 +82,14 @@ class Graph(object):
 
         *adjacency_dict*
             key: a vertex, value: a list of vertices linked to the
-            key vertex.
+            key vertex. Duplicate vertices will be removed, since there is no
+            multigraph support.
         '''
         for v, vs in adjacency_dict.items():
             self._check_vertices([v])
             self._check_vertices(vs)
-        self._adjacency_dict = adjacency_dict.copy()
+        self._adjacency_dict = dict([(k,list(set(vs)))
+                                     for k,vs in adjacency_dict.items()])
 
     def connect_vertex(self, v, neighbors):
         '''
@@ -98,17 +100,19 @@ class Graph(object):
             is directed.
         *neighbors*
             A vertex or a list of vertices to which *v* should be connected.
-            The *heads* of the arcs if the Graph is directed.
+            The *heads* of the arcs if the Graph is directed. Duplciate
+            vertices are removed, since there is no multigraph support.
 
         '''
         self._check_vertices([v])
+        self._adjacency_dict.setdefault(v, [])
         if isinstance(neighbors, list):
             self._check_vertices(neighbors)
-            self._adjacency_dict[v] = neighbors
+            self._adjacency_dict[v].extend(neighbors)
         else:
             self._check_vertices([neighbors])
-            self._adjacency_dict.setdefault(v, [])
             self._adjacency_dict[v].append(neighbors)
+        self._adjacency_dict[v] = list(set(self._adjacency_dict[v]))
 
     def _get_vertex_coloring(self):
         return self._vertex_coloring
