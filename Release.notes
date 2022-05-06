@@ -1,11 +1,11 @@
-Changes in version 1.0.2 + nauty27r3
+Changes in version 1.1.0 + nauty27r3
 
   - Frank Bryce fixed the issue of accepting multigraphs but then silently
     ignoring multiple edges when passing to nauty.
 
   - Built with nauty27r3
 
-  - Pynauty works with Python 3.7-3.10 and nauty27r1.
+  - Pynauty 1.1.0 works with Python 3.7-3.10 and nauty27r1.
 
 Changes in version 1.0.2 + nauty27r1
 
