@@ -7,6 +7,7 @@ their automorphism group in a Python programming environment.  Pynauty
 is a Python/C extension module using library components from the
 [Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay.
 
+### Current version is **1.1.0** built with `nauty27r3`.
 
 ## Usage
 
@@ -53,6 +54,10 @@ Graph(number_of_vertices=5, directed=False,
 ([[1, 0, 2, 3, 4]], 2.0, 0, [0, 0, 2, 3, 4], 4)
 >>>
 ```
+
+Please note that multigraphs are not supported, but this limitation can be
+worked around by encoding multigraphs as simple graphs. For details, see the
+documentation and Nauty's manual.
 
 ## Installation
 
@@ -110,7 +115,7 @@ You can read it with your favorite browser:
 
 Apart from Python the requirements are the same as for building Nauty.
 
-- Python 3.7 - 3.9
+- Python 3.8 - 3.10 
 - An ANSI C compiler 
 - GNU make
 
@@ -156,4 +161,4 @@ Pynauty is distributed under the terms of GPL v3 WITHOUT ANY WARRANTY.
 For the exact details on licensing see the file `COPYING`.
 
 Please note, Nauty is covered by its own licensing terms. For the exact
-details see the file `src/nauty27r1/COPYRIGHT`.
+details see the file `src/nauty27r3/COPYRIGHT`.
