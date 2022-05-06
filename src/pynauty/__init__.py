@@ -31,10 +31,10 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
 
-_nauty_version   = 'nauty27r1'
+_nauty_version   = 'nauty27r3'
 _nauty_dir       = _nauty_version   # relative to src/
 
-_pynauty_version = '1.0.2'
+_pynauty_version = '1.1.0'
 __version__      = _pynauty_version
 __Version__      = _pynauty_version + ' + ' + _nauty_version
 
