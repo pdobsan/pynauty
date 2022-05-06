@@ -7,7 +7,7 @@ their automorphism group in a Python programming environment.  Pynauty
 is a Python/C extension module using library components from the
 [Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay.
 
-### Current version is **1.1.0** built with `nauty27r3`.
+#### Current version is **1.1.0** built with `nauty27r3`.
 
 ## Usage
 
