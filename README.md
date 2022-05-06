@@ -154,6 +154,8 @@ documentation, examples as appropriate with the changes in your PR.
   - @goens helped creating `pytest` components.
 
   - Sam Morley-Short (@sammorley-short) added `canon_label()` function.
+  
+  - Frank Bryce fixed the issue of misleadingly accepting multigraphs.
 
 ## License
 
