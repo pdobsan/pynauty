@@ -1,3 +1,7 @@
+Changes in version 1.1.1 + nauty27r3
+
+  - Added the missing nauty source to the package uploaded to PyPi.
+
 Changes in version 1.1.0 + nauty27r3
 
   - Frank Bryce fixed the issue of accepting multigraphs but then silently
