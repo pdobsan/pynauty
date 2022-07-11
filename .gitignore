@@ -41,3 +41,6 @@ src/nauty*/gtools.h
 src/nauty*/makefile
 src/nauty*/naututil.h
 src/nauty*/nauty.h
+src/nauty*/.DS_Store
+src/nauty*/.DS_Store
+src/nauty*/._.DS_Store
