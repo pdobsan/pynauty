@@ -1,3 +1,8 @@
+Changes in version 1.1.2 + nauty27r4
+
+  - nauty27r4
+  - added python 3.10.5 to build and test matrix
+
 Changes in version 1.1.1 + nauty27r3
 
   - Added the missing nauty source to the package uploaded to PyPi.
