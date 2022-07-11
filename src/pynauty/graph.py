@@ -6,7 +6,7 @@ and utilities dealing with graph objects.
 '''
 
 __LICENSE__ = '''
-Copyright (c) 2015-2021 Peter Dobsan
+Copyright (c) 2015-2022 Peter Dobsan
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the

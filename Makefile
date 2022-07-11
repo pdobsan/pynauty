@@ -13,7 +13,7 @@ tests: pynauty
 minimal-test: pynauty
 	PYTHONPATH="${LIBPATH}:$(PYTHONPATH)" $(PYTHON) src/pynauty/tests/test_minimal.py
 
-install: tests
+install:
 ifdef VIRTUAL_ENV
 	$(PIP) install --upgrade .
 else

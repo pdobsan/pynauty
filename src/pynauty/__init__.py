@@ -20,7 +20,7 @@ Functions:
 '''
 
 __LICENSE__     = '''
-Copyright (c) 2015-2021 Peter Dobsan
+Copyright (c) 2015-2022 Peter Dobsan
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -31,10 +31,10 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
 
-_nauty_version   = 'nauty27r3'
+_nauty_version   = 'nauty27r4'
 _nauty_dir       = _nauty_version   # relative to src/
 
-_pynauty_version = '1.1.1'
+_pynauty_version = '1.1.2'
 __version__      = _pynauty_version
 __Version__      = _pynauty_version + ' + ' + _nauty_version
 
