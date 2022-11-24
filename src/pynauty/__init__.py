@@ -31,16 +31,17 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 '''
 
-_nauty_version   = 'nauty27r4'
+_nauty_version   = 'nauty2_8_6'
 _nauty_dir       = _nauty_version   # relative to src/
 
-_pynauty_version = '1.1.2'
+_pynauty_version = '2.8.6'
 __version__      = _pynauty_version
-__Version__      = _pynauty_version + ' + ' + _nauty_version
+__Version__      = _pynauty_version
+#__Version__      = _pynauty_version + ' + ' + _nauty_version
 
 def Version():
     '''
-    Return the combined version of the pynauty package.
+    Return the version of the pynauty package.
     '''
     return('Pynauty version ' + __Version__)
 

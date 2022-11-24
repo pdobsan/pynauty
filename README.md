@@ -7,7 +7,7 @@ their automorphism group in a Python programming environment.  Pynauty
 is a Python/C extension module using library components from the
 [Nauty](https://pallini.di.uniroma1.it/) package by Brendan McKay.
 
-Current version is distributed and has been tested with `nauty27r4`.
+Current version is distributed and has been tested with `nauty2_8_6`.
 
 ## Usage
 
@@ -128,7 +128,7 @@ You can download the source distribution form
 pip download --no-binary pynauty pynauty
 ```
 
-Please note, the source distribution also contains Nauty27r4's source.
+Please note, the source distribution also contains Nauty2_8_6's source.
 
 #### Build, test, install
 
@@ -163,4 +163,4 @@ Pynauty is distributed under the terms of GPL v3 WITHOUT ANY WARRANTY.
 For the exact details on licensing see the file `COPYING`.
 
 Please note, Nauty is covered by its own licensing terms. For the exact
-details see the file `src/nauty27r3/COPYRIGHT`.
+details see the file `src/nauty2_8_6/COPYRIGHT`.
