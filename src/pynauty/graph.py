@@ -23,6 +23,7 @@ __all__ = [
     'isomorphic',
     'certificate',
     'canon_label',
+    'canon_graph',
     'delete_random_edge',
 ]
 
@@ -208,6 +209,26 @@ def canon_label(g):
     if not isinstance(g, Graph):
         raise TypeError
     return nautywrap.graph_canonlab(g)
+
+
+# This is a temporary pure Python solution due to @rburing
+# It should be implemented in C for efficiency. 
+def canon_graph(g):
+    '''
+    Compute the canonically labeled version of graph g.
+
+    *g*
+        A Graph object.
+
+    return ->
+        new canonical graph.
+    '''
+    c = certificate(g)
+    set_length = len(c) // g.number_of_vertices
+    sets = [c[set_length*k:set_length*(k+1)] for k in range(g.number_of_vertices)]
+    neighbors = [[i for i in range(set_length * 8) if st[-1 - i//8] & (1 << (7 - i%8))] for st in sets]
+    return Graph(number_of_vertices=g.number_of_vertices, directed=g.directed,
+                 adjacency_dict={i: neighbors[i] for i in range(g.number_of_vertices)})
 
 
 def isomorphic(a, b):
