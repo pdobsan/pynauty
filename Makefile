@@ -44,6 +44,11 @@ virtenv-create:
 	@echo Created virtualenv: $(VENV_DIR)/
 	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
 
+virtenv-create-global:
+	$(PYTHON) -m venv $(VENV_DIR) --system-site-packages
+	@echo Created virtualenv: $(VENV_DIR)/
+	@echo To activate it type: source $(PWD)/$(VENV_DIR)/bin/activate
+
 virtenv-delete:
 	rm -fr $(VENV_DIR)
 	@echo Deleted virtualenv: $(VENV_DIR)/

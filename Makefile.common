@@ -43,6 +43,7 @@ endif
 	@echo '  clean          - remove all files created by build/packaging except' $(VENV_DIR)/
 	@echo '  clean-docs     - remove pyanauty documentation'
 	@echo '  virtenv-create - create virtualenv' $(VENV_DIR)/
+	@echo '  virtenv-create-global - create virtualenv' $(VENV_DIR)/ with access to the system site-packages
 	@echo '  virtenv-delete - delete virtualenv' $(VENV_DIR)/
 	@echo '  nauty-objects  - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
 	@echo '  clean-nauty    - a "distclean" for nauty'
