@@ -34,7 +34,7 @@ GNU General Public License for more details.
 _nauty_version   = 'nauty2_8_6'
 _nauty_dir       = _nauty_version   # relative to src/
 
-_pynauty_version = '2.8.6'
+_pynauty_version = '2.8.6.1'
 __version__      = _pynauty_version
 __Version__      = _pynauty_version
 #__Version__      = _pynauty_version + ' + ' + _nauty_version

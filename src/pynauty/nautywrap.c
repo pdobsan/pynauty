@@ -281,10 +281,10 @@ static PyObject* py_auto_group(NyGraph *g)
     for (i=0; i < g->no_generators; i++) {
         py_perm = PyList_New(g->no_vertices);
         for (j=0; j < g->no_vertices; j++) {
-            PyList_SET_ITEM(py_perm, j,
+            PyList_SetItem(py_perm, j,
                     Py_BuildValue("i", g->generator[i][j]));
         }
-        PyList_SET_ITEM(py_gens, i, py_perm);
+        PyList_SetItem(py_gens, i, py_perm);
     }
 
     // group order
@@ -299,17 +299,17 @@ static PyObject* py_auto_group(NyGraph *g)
     // orbits
     py_orbits = PyList_New(g->no_vertices);
     for (i=0; i < g->no_vertices; i++) {
-        PyList_SET_ITEM(py_orbits, i, Py_BuildValue("i", g->orbits[i]));
+        PyList_SetItem(py_orbits, i, Py_BuildValue("i", g->orbits[i]));
     }
 
     // create return value tuple:
     //      (generators, grpsize1, grpsize2, orbits, orbit_no)
     py_autgrp = PyTuple_New(5);
-    PyTuple_SET_ITEM(py_autgrp, 0, py_gens);
-    PyTuple_SET_ITEM(py_autgrp, 1, py_grpsize1);
-    PyTuple_SET_ITEM(py_autgrp, 2, py_grpsize2);
-    PyTuple_SET_ITEM(py_autgrp, 3, py_orbits);
-    PyTuple_SET_ITEM(py_autgrp, 4, Py_BuildValue("i", g->stats->numorbits));
+    PyTuple_SetItem(py_autgrp, 0, py_gens);
+    PyTuple_SetItem(py_autgrp, 1, py_grpsize1);
+    PyTuple_SetItem(py_autgrp, 2, py_grpsize2);
+    PyTuple_SetItem(py_autgrp, 3, py_orbits);
+    PyTuple_SetItem(py_autgrp, 4, Py_BuildValue("i", g->stats->numorbits));
 
     return py_autgrp;
 }
@@ -583,7 +583,7 @@ graph_canonlab(PyObject *self, PyObject *args)
 
     pyret = PyList_New(g->no_vertices);
     for (i=0; i < g->no_vertices; i++) {
-        PyList_SET_ITEM(pyret, i, Py_BuildValue("i", g->lab[i]));
+        PyList_SetItem(pyret, i, Py_BuildValue("i", g->lab[i]));
     }
 
     destroy_nygraph(g);
