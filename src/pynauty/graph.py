@@ -223,6 +223,8 @@ def canon_graph(g):
     return ->
         new canonical graph.
     '''
+    if g.vertex_coloring:
+        raise RuntimeError("canon_graph() is not implemented for vertex-colored graphs yet.")
     c = certificate(g)
     set_length = len(c) // g.number_of_vertices
     sets = [c[set_length*k:set_length*(k+1)] for k in range(g.number_of_vertices)]
