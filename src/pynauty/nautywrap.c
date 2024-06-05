@@ -96,6 +96,7 @@ void destroy_nygraph(NyGraph *g)
     for (i = 0; i < g->no_generators; i++) {
         free(g->generator[i]);
     }
+    free(g->generator);
 
     free(g);
 }
