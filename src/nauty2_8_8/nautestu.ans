@@ -1,0 +1,12 @@
+          1 graphs : echrom=0; class=1
+          5 graphs : echrom=1; class=1
+         36 graphs : echrom=2; class=1
+        659 graphs : echrom=3; class=1
+         21 graphs : echrom=3; class=2
+       3338 graphs : echrom=4; class=1
+      10667 graphs : echrom=5; class=1
+        139 graphs : echrom=5; class=2
+      23962 graphs : echrom=6; class=1
+         56 graphs : echrom=7; class=2
+ 38884 graphs altogether; cpu=0.05 sec
+>A ./countg --NNA

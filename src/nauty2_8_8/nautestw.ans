@@ -1,0 +1,14 @@
+          2 graphs : connect=7; econnect=7
+          3 graphs : connect=8; econnect=8
+          5 graphs : connect=9; econnect=9
+         16 graphs : connect=10; econnect=10
+         39 graphs : connect=11; econnect=11
+         89 graphs : connect=12; econnect=12
+        174 graphs : connect=13; econnect=13
+        241 graphs : connect=14; econnect=14
+        225 graphs : connect=15; econnect=15
+        148 graphs : connect=16; econnect=16
+         51 graphs : connect=17; econnect=17
+          7 graphs : connect=18; econnect=18
+ 1000 graphs altogether; cpu=4.58 sec
+>A ./countg --GGG

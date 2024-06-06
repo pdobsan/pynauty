@@ -1,0 +1,32 @@
+          1 graphs : echrom=0; class=1; connect=0; econnect=0
+          7 graphs : echrom=1; class=1; connect=0; econnect=0
+         98 graphs : echrom=2; class=1; connect=0; econnect=0
+          2 graphs : echrom=2; class=1; connect=1; econnect=1
+       1178 graphs : echrom=3; class=1; connect=0; econnect=0
+        247 graphs : echrom=3; class=1; connect=1; econnect=1
+         29 graphs : echrom=3; class=2; connect=0; econnect=0
+       3792 graphs : echrom=4; class=1; connect=0; econnect=0
+       2578 graphs : echrom=4; class=1; connect=1; econnect=1
+         44 graphs : echrom=4; class=1; connect=1; econnect=2
+          3 graphs : echrom=4; class=1; connect=2; econnect=2
+          7 graphs : echrom=4; class=2; connect=0; econnect=0
+          1 graphs : echrom=4; class=2; connect=1; econnect=1
+       6440 graphs : echrom=5; class=1; connect=0; econnect=0
+       7960 graphs : echrom=5; class=1; connect=1; econnect=1
+        413 graphs : echrom=5; class=1; connect=1; econnect=2
+        234 graphs : echrom=5; class=1; connect=2; econnect=2
+          6 graphs : echrom=5; class=1; connect=2; econnect=3
+         74 graphs : echrom=5; class=2; connect=0; econnect=0
+         22 graphs : echrom=5; class=2; connect=1; econnect=1
+       4949 graphs : echrom=6; class=1; connect=0; econnect=0
+       9384 graphs : echrom=6; class=1; connect=1; econnect=1
+        674 graphs : echrom=6; class=1; connect=1; econnect=2
+         10 graphs : echrom=6; class=1; connect=1; econnect=3
+        690 graphs : echrom=6; class=1; connect=2; econnect=2
+         21 graphs : echrom=6; class=1; connect=2; econnect=3
+          1 graphs : echrom=6; class=2; connect=0; econnect=0
+          2 graphs : echrom=6; class=2; connect=1; econnect=1
+         12 graphs : echrom=7; class=2; connect=0; econnect=0
+          5 graphs : echrom=7; class=2; connect=1; econnect=1
+ 38884 graphs altogether; cpu=0.08 sec
+>A ./countg --NNAGGG

@@ -1,0 +1,9 @@
+          4 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=0
+          9 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=1
+         19 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=2
+         20 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=3
+         25 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=4
+         14 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=5
+          8 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=6
+          1 graphs : n=114; e=171; mindeg=3; maxdeg=3; regular; pentagons=7
+ 100 graphs altogether; cpu=0.01 sec

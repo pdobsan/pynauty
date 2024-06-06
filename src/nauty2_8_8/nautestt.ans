@@ -1,0 +1,12 @@
+          1 graphs : chrom=1
+        328 graphs : chrom=2
+      14624 graphs : chrom=3
+      55933 graphs : chrom=4
+      43318 graphs : chrom=5
+      11081 graphs : chrom=6
+       1349 graphs : chrom=7
+        114 graphs : chrom=8
+          9 graphs : chrom=9
+          1 graphs : chrom=10
+ 126758 graphs altogether; cpu=0.07 sec
+>A ./countg --N

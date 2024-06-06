@@ -1,0 +1,11 @@
+     104814 graphs : mindeg=5; ktree=0
+         15 graphs : mindeg=5; ktree=5
+       3436 graphs : mindeg=6; ktree=0
+          5 graphs : mindeg=6; ktree=6
+         98 graphs : mindeg=7; ktree=0
+          2 graphs : mindeg=7; ktree=7
+          4 graphs : mindeg=8; ktree=0
+          1 graphs : mindeg=8; ktree=8
+          1 graphs : mindeg=9; ktree=10
+ 108376 graphs altogether; cpu=0.04 sec
+>A ./countg --dkk
