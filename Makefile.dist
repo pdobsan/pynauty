@@ -27,7 +27,7 @@ endif
 tools:
 	$(PIP) install --upgrade --requirement requirements.dist
 
-packages: pynauty tests docs
+packages: tools pynauty tests docs
 	$(MAKE) clean-nauty
 ifndef GITHUB_ACTIONS
 	$(PYTHON) setup.py sdist
