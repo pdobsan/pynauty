@@ -1,3 +1,8 @@
+Changes in 2.8.8.1
+
+  - updated to nauty2_8_8
+  - decreased space leak by merging PR #40
+
 Changes in version 2.8.6 + nauty2_8_6
 
   - synchronize version with nauty's

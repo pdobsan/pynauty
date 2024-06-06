@@ -115,7 +115,7 @@ You can read it with your favorite browser:
 
 Apart from Python the requirements are the same as for building Nauty.
 
-- Python 3.8 - 3.10 
+- Python 3.8 - 3.12 
 - An ANSI C compiler 
 - GNU make
 
