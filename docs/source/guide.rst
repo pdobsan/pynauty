@@ -124,7 +124,7 @@ In the spirit of *Scientific Reproducibility* we might want to record
 what version of the package produced the result:
 
     >>> print('Computed by', Version())
-    Computed by Pynauty version 2.8.6
+    Computed by Pynauty version 2.8.8
     >>> 
 
 Fixing vertex 3 by coloring reduces the automorphism group::

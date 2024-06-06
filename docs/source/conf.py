@@ -25,7 +25,7 @@ import pynauty
 # -- Project information -----------------------------------------------------
 
 project = 'Pynauty'
-copyright = '2021, Peter Dobsan'
+copyright = '2011-2024, Peter Dobsan'
 author = 'Peter Dobsan'
 
 version = pynauty.__version__
