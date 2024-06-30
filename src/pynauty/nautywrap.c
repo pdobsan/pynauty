@@ -234,6 +234,7 @@ static int set_partition(PyObject *py_graph, int *lab, int *ptn)
     }
 
     if ((no_parts = PyObject_Length(partition)) <= 0) {
+        Py_DECREF(partition);
         return -1;      // no coloring
     }
 
@@ -357,12 +358,12 @@ NyGraph * _make_nygraph(PyObject *py_graph)
         PyErr_SetString(PyExc_TypeError, "missing 'directed' attribute");
         return NULL;
     }
-    Py_DECREF(p);
     if (PyObject_IsTrue(p)) {
         g->options->digraph = TRUE;
     } else {
         g->options->digraph = FALSE;
     }
+    Py_DECREF(p);
 
     // get the adjacency list dictionary object
     if ((adjdict = PyObject_GetAttrString(py_graph, "adjacency_dict")) == NULL) {
