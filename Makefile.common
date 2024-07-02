@@ -39,6 +39,7 @@ ifdef VIRTUAL_ENV
 else
 	@echo '  uninstall      - uninstall pynauty either from ~/.local or from an active virtualenv'
 endif
+	@echo '  tools          - install/upgrade required modules for building, testing and packaging'
 	@echo '  docs           - build pyanauty documentation'
 	@echo '  clean          - remove all files created by build/packaging except' $(VENV_DIR)/
 	@echo '  clean-docs     - remove pyanauty documentation'
@@ -54,5 +55,8 @@ endif
 	@echo 'Python version: ' ${python_version_full}
 	@echo 'Pip used:       ' ${PIP}
 	@echo 'Platform:       ' ${platform}
+
+tools:
+	$(PIP) install --upgrade --requirement requirements.dist
 
 # vim: filetype=make syntax=make

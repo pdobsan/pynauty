@@ -6,7 +6,6 @@ packages-help:
 	@echo Available targets for publishing pynauty packages:
 	@echo
 	@echo '  packages       - create source and binary distribution packages'
-	@echo '  tools          - install/upgrade modules needed for packaging'
 	@echo '  testupload     - upload packages to https://test.pypi.org'
 	@echo '  upload         - upload packages to https://pypi.org'
 	@echo
@@ -23,9 +22,6 @@ ifndef VIRTUAL_ENV
 $(error ERROR: not in a virtaulenv! bailing out ...)
 endif
 endif
-
-tools:
-	$(PIP) install --upgrade --requirement requirements.dist
 
 packages: tools pynauty tests docs
 	$(MAKE) clean-nauty
