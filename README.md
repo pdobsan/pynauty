@@ -1,5 +1,8 @@
 [![Build and test](https://github.com/pdobsan/pynauty/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/pdobsan/pynauty/actions/workflows/build-and-test.yml)
 
+
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pynauty)
+
 # Pynauty 
 
 Pynauty can be used to compare graphs for isomorphism and to determine
