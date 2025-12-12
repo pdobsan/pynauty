@@ -173,8 +173,21 @@ def autgrp(g):
         A Graph object.
 
     return -> (generators, grpsize1, grpsize2, orbits, numorbits)
-        For the detailed description of the returned components, see
-        Nauty's documentation.
+        *generators*
+            A list of generators of the automorphism group; each
+            generator is represented as a list where the i-th
+            element indicates where vertex i is mapped.
+        *grpsize1*, *grpsize2*
+            The order of the automorphism group is equal to 
+            ```python
+            grpsize1 * 10**grpsize2
+            ```
+        *orbits*
+            A list where the i-th element indicates the orbit
+            number of vertex i.
+        *numorbits*
+            The number of orbits of the automorphism group.
+            
     '''
     if not isinstance(g, Graph):
         raise TypeError
