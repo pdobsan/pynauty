@@ -57,7 +57,7 @@ data_files = []
 ext_pynauty = Extension(
         name = MODULE + '.nautywrap',
         sources = [ pynauty_dir + '/' + 'nautywrap.c', ],
-        extra_compile_args = [ '-O4', '-fPIC' ],
+        extra_compile_args = [ '-O2', '-fPIC' ],
         extra_objects = [ nauty_dir + '/' + 'nauty.o',
                           nauty_dir + '/' + 'nautil.o',
                           nauty_dir + '/' + 'naugraph.o',
