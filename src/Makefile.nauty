@@ -12,7 +12,7 @@ help:
 
 nauty-config: $(NAUTY_DIR)/config.log
 $(NAUTY_DIR)/config.log:
-	cd $(NAUTY_DIR); ./configure CFLAGS='-O4 -fPIC'
+	cd $(NAUTY_DIR); ./configure --enable-generic CFLAGS='-O2 -fPIC'
 
 nauty-objects: nauty-config
 	cd $(NAUTY_DIR); make nauty.o nautil.o naugraph.o schreier.o naurng.o
