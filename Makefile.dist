@@ -33,7 +33,6 @@ ifndef GITHUB_ACTIONS
 endif
 	$(PYTHON) setup.py bdist_wheel
 	#$(PYTHON) -m build
-	@cd dist/ ; ../src/fix-wheel-tag.sh
 	@echo Packages created:
 	@ls -l dist/
 
