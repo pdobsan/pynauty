@@ -14,6 +14,9 @@ packages-help:
 
 include Makefile.common
 
+# Wheels must not require instructions detected on the build machine.
+export NAUTY_CONFIGURE_ARGS = --enable-generic --disable-popcnt --disable-clz
+
 ifdef GITHUB_ACTIONS
 $(info Run by Gitub actions)
 else

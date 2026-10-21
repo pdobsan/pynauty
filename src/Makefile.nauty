@@ -1,5 +1,7 @@
 # Sub-Makefile to deal with Nauty related stuff
 
+NAUTY_CONFIGURE_ARGS ?=
+
 help:
 	@echo Available targets:
 	@echo '  nauty-objects  - compile only nauty.o nautil.o naugraph.o schreier.o naurng.o'
@@ -12,7 +14,7 @@ help:
 
 nauty-config: $(NAUTY_DIR)/config.log
 $(NAUTY_DIR)/config.log:
-	cd $(NAUTY_DIR); ./configure CFLAGS='-O4 -fPIC'
+	cd $(NAUTY_DIR); ./configure $(NAUTY_CONFIGURE_ARGS) CFLAGS='-O4 -fPIC'
 
 nauty-objects: nauty-config
 	cd $(NAUTY_DIR); make nauty.o nautil.o naugraph.o schreier.o naurng.o
