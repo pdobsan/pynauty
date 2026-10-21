@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14", "3.15"]
         os:
         - ubuntu-latest
         - macos-latest
@@ -22,11 +22,26 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
+      if: runner.os != 'Linux'
       run: |
         python -m pip install --upgrade pip
         make -f Makefile.dist tools
     - name: Build packages
+      if: runner.os != 'Linux'
       run: make -f Makefile.dist packages
+    - name: Select Linux wheel
+      if: runner.os == 'Linux'
+      run: |
+        python -c 'import sys; print("CIBW_BUILD=cp%d%d-manylinux_x86_64" % sys.version_info[:2])' >> "$GITHUB_ENV"
+    - name: Build and test Linux wheel
+      if: runner.os == 'Linux'
+      uses: pypa/cibuildwheel@v4.3.2
+      with:
+        config-file: cibuildwheel.toml
+        output-dir: dist
+    - name: Install publishing tools
+      if: runner.os == 'Linux'
+      run: python -m pip install twine
     - name: Publish
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
